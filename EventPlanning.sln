@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32802.440
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventPlanning", "EventPlanning\EventPlanning.csproj", "{56255E00-775B-4286-8421-C8FFC1C80977}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventPlanning", "EventPlanning\EventPlanning.csproj", "{56255E00-775B-4286-8421-C8FFC1C80977}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventPlanning.API", "EventPlanning.API\EventPlanning.API.csproj", "{567B73ED-2881-4128-8FC6-DC9382D80BBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BLL", "BLL", "{5F25B4A7-3B0B-4086-BC46-84FB702354DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{21B8BF5A-9238-47D3-A0CF-7203DACBA28C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{9B705310-D029-4488-98CF-2F6D15F932CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Bll", "Infrastructure.Bll\Infrastructure.Bll.csproj", "{D3408861-3333-4579-AD46-4D10323CDDB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Dal", "Infrastructure.Dal\Infrastructure.Dal.csproj", "{4D862E3A-917D-48B2-8F54-FFF4DA615A05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +27,25 @@ Global
 		{56255E00-775B-4286-8421-C8FFC1C80977}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56255E00-775B-4286-8421-C8FFC1C80977}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56255E00-775B-4286-8421-C8FFC1C80977}.Release|Any CPU.Build.0 = Release|Any CPU
+		{567B73ED-2881-4128-8FC6-DC9382D80BBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{567B73ED-2881-4128-8FC6-DC9382D80BBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{567B73ED-2881-4128-8FC6-DC9382D80BBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{567B73ED-2881-4128-8FC6-DC9382D80BBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3408861-3333-4579-AD46-4D10323CDDB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3408861-3333-4579-AD46-4D10323CDDB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3408861-3333-4579-AD46-4D10323CDDB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3408861-3333-4579-AD46-4D10323CDDB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D862E3A-917D-48B2-8F54-FFF4DA615A05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D862E3A-917D-48B2-8F54-FFF4DA615A05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D862E3A-917D-48B2-8F54-FFF4DA615A05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D862E3A-917D-48B2-8F54-FFF4DA615A05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D3408861-3333-4579-AD46-4D10323CDDB2} = {5F25B4A7-3B0B-4086-BC46-84FB702354DA}
+		{4D862E3A-917D-48B2-8F54-FFF4DA615A05} = {21B8BF5A-9238-47D3-A0CF-7203DACBA28C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DF9FAF61-54ED-47E4-A3C8-61DCC649AEAE}
