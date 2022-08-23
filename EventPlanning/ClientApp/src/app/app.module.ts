@@ -13,6 +13,10 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { JoinEventComponent } from './join-event/join-event.component';
+import { AddAdditionalInfoComponent } from './create-event/add-additional-info/add-additional-info.component';
+
+import { LoginService } from './Services/login-service';
+
 
 @NgModule({
   declarations: [
@@ -22,9 +26,10 @@ import { JoinEventComponent } from './join-event/join-event.component';
     CounterComponent,
     FetchDataComponent,
     LoginComponent,
-        RegistrationComponent,
-        CreateEventComponent,
-        JoinEventComponent
+    RegistrationComponent,
+    CreateEventComponent,
+    JoinEventComponent,
+    AddAdditionalInfoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -40,7 +45,9 @@ import { JoinEventComponent } from './join-event/join-event.component';
       { path: 'create-event', component: CreateEventComponent }
     ])
   ],
-  providers: [],
+    providers:
+        [
+        LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

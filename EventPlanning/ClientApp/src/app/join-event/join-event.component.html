@@ -1,12 +1,22 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
-    <p>
-        Join event
-    </p>
-</body>
-</html>
+﻿<form class="row g-3">
+    <div class="align-items-start">
+        <p class="font-weight-bold display-1">Available events</p>
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Location</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let event of events">
+                <ng-template [ngTemplateOutlet]="loadTemplate(user)"
+                             [ngTemplateOutletContext]="{ $implicit: user}">
+                </ng-template>
+            </tr>
+        </tbody>
+    </table>
+
+</form>

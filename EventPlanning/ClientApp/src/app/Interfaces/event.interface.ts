@@ -5,5 +5,6 @@ export interface Event {
     Id: number;
     Location: string;
     Date: Date;
+    Author: string;
     AdditionalInfo: Array<EventInfo>
 }
