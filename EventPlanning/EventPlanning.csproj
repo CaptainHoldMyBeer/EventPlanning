@@ -28,13 +28,36 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\create-event\ad-additional-info\add-additional-info.component.ts" />
+    <None Remove="ClientApp\src\app\create-event\create-event.component.ts" />
+    <None Remove="ClientApp\src\app\Interfaces\event-information.interface.ts" />
+    <None Remove="ClientApp\src\app\Interfaces\event.interface.ts" />
+    <None Remove="ClientApp\src\app\Interfaces\user.interface.ts" />
+    <None Remove="ClientApp\src\app\join-event\join-event.component.ts" />
     <None Remove="ClientApp\src\app\login\login.component.ts" />
     <None Remove="ClientApp\src\app\registration\registration.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\create-event\ad-additional-info\add-additional-info.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\create-event\create-event.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Interfaces\event-information.interface.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Interfaces\event.interface.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Interfaces\user.interface.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\join-event\join-event.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\registration\registration.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\Services\" />
+    <Folder Include="ClientApp\src\assets\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ClientApp\src\assets\main-logo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

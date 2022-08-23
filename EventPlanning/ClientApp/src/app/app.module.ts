@@ -11,7 +11,8 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-
+import { CreateEventComponent } from './create-event/create-event.component';
+import { JoinEventComponent } from './join-event/join-event.component';
 
 @NgModule({
   declarations: [
@@ -21,19 +22,22 @@ import { RegistrationComponent } from './registration/registration.component';
     CounterComponent,
     FetchDataComponent,
     LoginComponent,
-    RegistrationComponent
+        RegistrationComponent,
+        CreateEventComponent,
+        JoinEventComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
       RouterModule.forRoot([
-      { path: '', component: LoginComponent },
-      /*{ path: '', component: HomeComponent, pathMatch: 'full' },*/
+      { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      
-      { path: 'registration', component: RegistrationComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'registration', component: RegistrationComponent },
+      { path: 'join-event', component: JoinEventComponent },
+      { path: 'create-event', component: CreateEventComponent }
     ])
   ],
   providers: [],
