@@ -19,6 +19,8 @@ import { LoginService } from './Services/login-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatTableModule } from '@angular/material/table'
+import { GridModule } from '@progress/kendo-angular-grid';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +48,8 @@ import { MatTableModule } from '@angular/material/table'
       { path: 'join-event', component: JoinEventComponent },
       { path: 'create-event', component: CreateEventComponent }
     ]),
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      GridModule
   ],
     providers:
         [

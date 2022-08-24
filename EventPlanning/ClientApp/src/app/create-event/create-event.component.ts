@@ -1,19 +1,39 @@
-﻿import { Component } from '@angular/core'
-import { MatTableDataSource } from '@angular/material';
+﻿import { Component, Inject } from '@angular/core'
+import { MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { EventInfo } from '../Interfaces/event-information.interface'
 
 @Component({
     selector: 'create-event.component',
-    templateUrl: './create-event.component.html'
+    templateUrl: './create-event.component.html',
+    styleUrls: ['./create-event.component.css']
 })
 export class CreateEventComponent {
     public user: any;
     displayedColumns = ['name', 'weight'];
     dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
 
+    constructor(public dialog: MatDialog) { }
+
+    openDialog(): void {
+
+    }
 
     public getRecord(e: any) {
         alert(e);
     }
+}
+
+@Component({
+    selector: 'add-additional-info.component',
+    templateUrl: './add-additional-info.component.html'
+})
+export class AddAdditionalInfoComponent {
+    public user: any;
+
+
+    constructor(
+        public dialogRef: MatDialogRef<CreateEventComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 }
 
 export interface Element {
