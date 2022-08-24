@@ -16,10 +16,12 @@ import { JoinEventComponent } from './join-event/join-event.component';
 import { AddAdditionalInfoComponent } from './create-event/add-additional-info/add-additional-info.component';
 
 import { LoginService } from './Services/login-service';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GlobalAppService } from './Services/global-app-service'
+import { EventService } from './Services/event-service'
 
-import { MatTableModule } from '@angular/material/table'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
+
 
 
 @NgModule({
@@ -37,8 +39,7 @@ import { GridModule } from '@progress/kendo-angular-grid';
   ],
   imports: [
       BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-      HttpClientModule, MatTableModule,
-    FormsModule,
+      HttpClientModule, FormsModule,
       RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
@@ -48,12 +49,9 @@ import { GridModule } from '@progress/kendo-angular-grid';
       { path: 'join-event', component: JoinEventComponent },
       { path: 'create-event', component: CreateEventComponent }
     ]),
-      BrowserAnimationsModule,
-      GridModule
-  ],
-    providers:
-        [
-        LoginService],
+      BrowserAnimationsModule, GridModule
+    ],
+    providers: [LoginService, GlobalAppService, EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

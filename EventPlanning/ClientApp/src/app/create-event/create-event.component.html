@@ -61,12 +61,11 @@
 
     <div class="row align-bottom mt-4">
         <div class="col-sm">
-            <button type="submit" class="btn btn-primary" (click)="openDialogWindowCommand()">Add info</button>
+            <button class="btn btn-primary" (click)="openDialogWindowCommand()">Add info</button>
         </div>
         <div class="col-sm ">
             <kendo-grid [data]="data"
-                        [height]="300"
-                        [selectable]="true">
+                        [height]="300">
                 <kendo-grid-column field="name" title="name"> </kendo-grid-column>
                 <kendo-grid-column field="weight" title="weight"> </kendo-grid-column>
             </kendo-grid>

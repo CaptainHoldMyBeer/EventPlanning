@@ -14,6 +14,7 @@ export class CreateEventComponent {
 
     public openDialogWindowCommand() {
         this.openDialogWindow = true;
+        alert(this.openDialogWindow);
     }
 }
 export interface Element {

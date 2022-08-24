@@ -36,6 +36,8 @@
     <None Remove="ClientApp\src\app\join-event\join-event.component.ts" />
     <None Remove="ClientApp\src\app\login\login.component.ts" />
     <None Remove="ClientApp\src\app\registration\registration.component.ts" />
+    <None Remove="ClientApp\src\app\Services\event-service.ts" />
+    <None Remove="ClientApp\src\app\Services\global-app-service.ts" />
     <None Remove="ClientApp\src\app\Services\login-service.ts" />
   </ItemGroup>
 
@@ -48,6 +50,8 @@
     <TypeScriptCompile Include="ClientApp\src\app\join-event\join-event.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\registration\registration.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Services\event-service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Services\global-app-service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Services\login-service.ts" />
   </ItemGroup>
 
