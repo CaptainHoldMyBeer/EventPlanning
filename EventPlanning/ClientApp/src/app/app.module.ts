@@ -16,6 +16,7 @@ import { JoinEventComponent } from './join-event/join-event.component';
 import { AddAdditionalInfoComponent } from './create-event/add-additional-info/add-additional-info.component';
 
 import { LoginService } from './Services/login-service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { LoginService } from './Services/login-service';
       { path: 'registration', component: RegistrationComponent },
       { path: 'join-event', component: JoinEventComponent },
       { path: 'create-event', component: CreateEventComponent }
-    ])
+    ]),
+      BrowserAnimationsModule
   ],
     providers:
         [
