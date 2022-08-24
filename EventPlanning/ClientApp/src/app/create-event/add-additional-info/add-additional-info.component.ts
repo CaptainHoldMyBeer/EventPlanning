@@ -10,8 +10,4 @@ import { CreateEventComponent } from '../create-event.component';
 export class AddAdditionalInfoComponent {
     public user: any;
 
-
-    constructor(
-        public dialogRef: MatDialogRef<CreateEventComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 }

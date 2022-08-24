@@ -22,20 +22,6 @@ export class CreateEventComponent {
         alert(e);
     }
 }
-
-@Component({
-    selector: 'add-additional-info.component',
-    templateUrl: './add-additional-info.component.html'
-})
-export class AddAdditionalInfoComponent {
-    public user: any;
-
-
-    constructor(
-        public dialogRef: MatDialogRef<CreateEventComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
-}
-
 export interface Element {
     name: string;
     weight: string;
