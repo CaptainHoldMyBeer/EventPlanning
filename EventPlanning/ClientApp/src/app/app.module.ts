@@ -18,6 +18,7 @@ import { AddAdditionalInfoComponent } from './create-event/add-additional-info/a
 import { LoginService } from './Services/login-service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatTableModule } from '@angular/material/table'
 
 @NgModule({
   declarations: [
@@ -33,8 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AddAdditionalInfoComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    HttpClientModule,
+      BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+      HttpClientModule, MatTableModule,
     FormsModule,
       RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
