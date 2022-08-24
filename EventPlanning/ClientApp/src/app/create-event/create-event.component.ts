@@ -1,5 +1,4 @@
 ﻿import { Component, Inject } from '@angular/core'
-import { MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { EventInfo } from '../Interfaces/event-information.interface'
 
 @Component({
@@ -9,23 +8,17 @@ import { EventInfo } from '../Interfaces/event-information.interface'
 })
 export class CreateEventComponent {
     public user: any;
-    displayedColumns = ['name', 'weight'];
-    dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
+    public data: Element[] = ELEMENT_DATA;
+    public openDialogWindow: boolean = false;
 
-    constructor(public dialog: MatDialog) { }
 
-    openDialog(): void {
-
-    }
-
-    public getRecord(e: any) {
-        alert(e);
+    public openDialogWindowCommand() {
+        this.openDialogWindow = true;
     }
 }
 export interface Element {
     name: string;
     weight: string;
-
 }
 
 const ELEMENT_DATA: Element[] = [

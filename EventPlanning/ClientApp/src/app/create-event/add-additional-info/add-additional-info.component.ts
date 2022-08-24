@@ -1,6 +1,4 @@
 ﻿import { Component, Inject } from '@angular/core'
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { CreateEventComponent } from '../create-event.component';
 
 
 @Component({
@@ -9,5 +7,6 @@ import { CreateEventComponent } from '../create-event.component';
 })
 export class AddAdditionalInfoComponent {
     public user: any;
+
 
 }

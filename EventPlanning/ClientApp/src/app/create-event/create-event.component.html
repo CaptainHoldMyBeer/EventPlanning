@@ -51,28 +51,25 @@
 
     <div class="row align-bottom mt-4">
         <div class="col-sm">
-            <button type="submit" class="btn btn-primary">Add info</button>
+            <label>Max members</label>
+        </div>
+        <div class="col-sm">
+            <input type="number" class="form-control">
+        </div>
+        <div class="col-sm"></div>
+    </div>
+
+    <div class="row align-bottom mt-4">
+        <div class="col-sm">
+            <button type="submit" class="btn btn-primary" (click)="openDialogWindowCommand()">Add info</button>
         </div>
         <div class="col-sm ">
-            <div class="example-container mat-elevation-z8">
-                <mat-table class="table-container" #table [dataSource]="dataSource">
-
-                    Name Column
-                    <ng-container matColumnDef="name">
-                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-                    </ng-container>
-
-                    Weight Column
-                    <ng-container matColumnDef="weight">
-                        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-                    </ng-container>
-
-                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                </mat-table>
-            </div>
+            <kendo-grid [data]="data"
+                        [height]="300"
+                        [selectable]="true">
+                <kendo-grid-column field="name" title="name"> </kendo-grid-column>
+                <kendo-grid-column field="weight" title="weight"> </kendo-grid-column>
+            </kendo-grid>
         </div>
         <div class="col-sm"></div>
     </div>
@@ -86,5 +83,4 @@
         </div>
         <div class="col-sm"></div>
     </div>
-
 </div>

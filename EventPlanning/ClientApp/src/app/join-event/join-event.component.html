@@ -1,57 +1,35 @@
-﻿<!--<form class="row g-3">
-    <div class="align-items-start">
-        <p class="font-weight-bold display-1">Available events</p>
-    </div>
-    <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Location</th>
-                <th scope="col">Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let event of events">
-                <ng-template [ngTemplateOutlet]="loadTemplate(user)"
-                             [ngTemplateOutletContext]="{ $implicit: user}">
-                </ng-template>
-            </tr>
-        </tbody>
-    </table>
-
-</form>-->
-<div class="container">
-    <div class="col-sm-8">
-        <div class="example-container mat-elevation-z8">
-            <mat-table #table [dataSource]="dataSource">
-
-                Position Column
-                <ng-container matColumnDef="position">
-                    <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-                </ng-container>
-
-                Name Column
-                <ng-container matColumnDef="name">
-                    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-                </ng-container>
-
-                Weight Column
-                <ng-container matColumnDef="weight">
-                    <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-                </ng-container>
-
-                Symbol Column
-                <ng-container matColumnDef="symbol">
-                    <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-                </ng-container>
-
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
+﻿<div class="container">
+    <div class="row mt-4">
+        <div class="col-sm"></div>
+        <div class="col-sm text-center">
+            <label class="form-label">Available events</label>
         </div>
+        <div class="col-sm"></div>
+    </div>
+
+    <div class="row align-bottom mt-4">
+        <div class="col-8">
+            <kendo-grid [height]="500">
+                <kendo-grid-column field="name" title="Title"> </kendo-grid-column>
+                <kendo-grid-column field="name" title="Place"> </kendo-grid-column>
+                <kendo-grid-column field="name" title="Date"> </kendo-grid-column>
+                <kendo-grid-column field="name" title="Time"> </kendo-grid-column>
+                <kendo-grid-column field="name" title="Remaining places"> </kendo-grid-column>
+            </kendo-grid>
+        </div>
+
+        <div class="col-4">
+            <kendo-grid [height]="500">
+                <kendo-grid-column field="name" title="Key"> </kendo-grid-column>
+                <kendo-grid-column field="name" title="Value"> </kendo-grid-column>
+            </kendo-grid>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-sm"></div>
+        <div class="col-sm text-center">
+            <button type="submit" class="btn btn-primary">Join</button>
+        </div>
+        <div class="col-sm"></div>
     </div>
 </div>
