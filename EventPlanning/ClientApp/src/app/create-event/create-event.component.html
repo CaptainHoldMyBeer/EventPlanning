@@ -83,3 +83,8 @@
         <div class="col-sm"></div>
     </div>
 </div>
+
+<add-additional-info *ngIf="openDialogWindow"
+                     (add)="onAddNewInformation($event)"
+                     (cancel)="closeDialogWindowCommand($event)">
+</add-additional-info>

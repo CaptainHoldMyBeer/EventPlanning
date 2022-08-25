@@ -38,6 +38,7 @@
     <None Remove="ClientApp\src\app\registration\registration.component.ts" />
     <None Remove="ClientApp\src\app\Services\event-service.ts" />
     <None Remove="ClientApp\src\app\Services\global-app-service.ts" />
+    <None Remove="ClientApp\src\app\Services\hash-service.ts" />
     <None Remove="ClientApp\src\app\Services\login-service.ts" />
   </ItemGroup>
 
@@ -52,6 +53,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\registration\registration.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Services\event-service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Services\global-app-service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Services\hash-service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Services\login-service.ts" />
   </ItemGroup>
 
@@ -61,6 +63,9 @@
 
   <ItemGroup>
     <None Update="ClientApp\src\assets\main-logo.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ClientApp\src\assets\template.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

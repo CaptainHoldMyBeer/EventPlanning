@@ -21,6 +21,8 @@ import { EventService } from './Services/event-service'
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+
 
 
 
@@ -49,7 +51,7 @@ import { GridModule } from '@progress/kendo-angular-grid';
       { path: 'join-event', component: JoinEventComponent },
       { path: 'create-event', component: CreateEventComponent }
     ]),
-      BrowserAnimationsModule, GridModule
+      BrowserAnimationsModule, GridModule, DialogsModule
     ],
     providers: [LoginService, GlobalAppService, EventService],
   bootstrap: [AppComponent]

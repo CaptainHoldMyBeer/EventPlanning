@@ -1,4 +1,21 @@
-﻿<div>
-    <p>fdsfdsf</p>
-</div>
-
+﻿<kendo-window (close)="onCancel()" [minWidth]="250" [width]="405" [resizable]="false">
+    <kendo-window-titlebar style="background-color: #0069d9">
+        Добавление параметров
+    </kendo-window-titlebar>
+    <form>
+        <label>
+            <span>Name</span>
+            <input type="text" class="form-control" [(ngModel)]="Name" [ngModelOptions]="{standalone: true}">
+        </label>
+        <label>
+            <span>Value</span>
+            <input type="text" class="form-control" [(ngModel)]="Value" [ngModelOptions]="{standalone: true}">
+        </label>
+        <div class="mt-4 text-center">
+            <div>
+                <button type="submit" class="btn btn-primary" (click)="onAddData()">Add</button>
+                <button type="button" class="btn btn-default" (click)="onCancel()">Cancel</button>
+            </div>
+        </div>
+    </form>
+</kendo-window>

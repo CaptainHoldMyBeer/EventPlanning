@@ -14,7 +14,16 @@ export class CreateEventComponent {
 
     public openDialogWindowCommand() {
         this.openDialogWindow = true;
-        alert(this.openDialogWindow);
+    }
+
+    public closeDialogWindowCommand(e: boolean) {
+        console.log("te");
+        this.openDialogWindow = false;
+    }
+
+    public onAddNewInformation(newInfo: EventInfo) {
+        let tmp = newInfo;
+        alert(tmp);
     }
 }
 export interface Element {
