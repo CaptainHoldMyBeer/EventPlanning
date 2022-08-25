@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Infrastructure.Bll.Utils.EmailService;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Model.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace EventPlanning.API.Controllers
 {
@@ -6,6 +11,19 @@ namespace EventPlanning.API.Controllers
     [ApiController]
     public class RegistrationController : ControllerBase
     {
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        //private readonly IEmailService _emailService;
+
+        public RegistrationController(UserManager<User> userManager, SignInManager<User> signInManager)
+        {
+            
+            
+            _userManager = userManager;
+            _signInManager = signInManager;
+            //_emailService = emailService;
+        }
+
         [Route("register")]
         [HttpPost]
         public IActionResult RegisterUser()
@@ -15,9 +33,39 @@ namespace EventPlanning.API.Controllers
 
         [Route("checkUser")]
         [HttpGet]
-        public IActionResult CheckIfUserExists()
+        public async Task<IActionResult> CheckIfUserExists()
         {
-            return Ok("check user");
+            try
+            {
+                var user = _userManager.FindByEmailAsync("luperkalfan@gmail.com").Result;
+
+                var result = true;
+
+                if (result)
+                {
+                    var code = _userManager.GenerateEmailConfirmationTokenAsync(user).Result;
+
+                    var tmp =  _userManager.ConfirmEmailAsync(user, code).Result;
+
+                    var callbackUrl = Url.Action(
+                            "ConfirmEmail",
+                            "Account",
+                            new { userId = user.Id, code = code },
+                            protocol: HttpContext.Request.Scheme);
+                    EmailService emailService = new EmailService();
+                    await emailService.SendEmailAsync(user.Email, "Confirm your account",
+                        $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
+                    user.EmailConfirmed = true;
+                    return Ok("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме");
+                }
+
+
+                return Ok("check user");
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
         }
     }
 }
