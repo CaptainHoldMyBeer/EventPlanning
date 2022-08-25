@@ -13,16 +13,18 @@ namespace Infrastructure.Bll.Utils.EmailService
             {
 
                 #region тестирование отправки сообщения с ссылкой
-                var mailMessage = new MailMessage("eventsnoreplytask@gmail.com", email, "Hello world", message);
-                mailMessage.IsBodyHtml = true;
-                var client = new SmtpClient("smtp.mailtrap.io", 2525)
-                {
-                    Credentials = new NetworkCredential("b897485e21ba67", "b09ede855c4065"),
-                    EnableSsl = true,
 
-                };
-                client.Send("eventsnoreplytask@gmail.com", email, "Hello world", message);
+                //var mailMessage = new MailMessage("eventsnoreplytask@gmail.com", email, "Hello world", message);
+                //mailMessage.IsBodyHtml = true;
+                //var client = new SmtpClient("smtp.mailtrap.io", 2525)
+                //{
+                //    Credentials = new NetworkCredential("b897485e21ba67", "b09ede855c4065"),
+                //    EnableSsl = true,
 
+                //};
+                //client.Send("eventsnoreplytask@gmail.com", email, "Подтверждение", message);
+
+                await Task.Delay(100);
 
                 #endregion
 
