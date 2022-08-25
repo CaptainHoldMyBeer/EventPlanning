@@ -41,10 +41,11 @@
 
     <div class="row align-bottom mt-4">
         <div class="col-sm">
-            <button type="submit" class="btn btn-primary">Pin file</button>
+            
         </div>
         <div class="col-sm">
-            <input type="text" class="form-control">
+            <kendo-upload [saveUrl]="uploadSaveUrl" [removeUrl]="uploadRemoveUrl" (upload)="onUploadEvent($event)">
+            </kendo-upload>
         </div>
         <div class="col-sm"></div>
     </div>

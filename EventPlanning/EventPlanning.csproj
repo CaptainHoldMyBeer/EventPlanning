@@ -32,6 +32,7 @@
     <None Remove="ClientApp\src\app\create-event\create-event.component.ts" />
     <None Remove="ClientApp\src\app\Interfaces\event-information.interface.ts" />
     <None Remove="ClientApp\src\app\Interfaces\event.interface.ts" />
+    <None Remove="ClientApp\src\app\Interfaces\file.interface.ts" />
     <None Remove="ClientApp\src\app\Interfaces\user.interface.ts" />
     <None Remove="ClientApp\src\app\join-event\join-event.component.ts" />
     <None Remove="ClientApp\src\app\login\login.component.ts" />
@@ -47,6 +48,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\create-event\create-event.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Interfaces\event-information.interface.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Interfaces\event.interface.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Interfaces\file.interface.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Interfaces\user.interface.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\join-event\join-event.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\login\login.component.ts" />

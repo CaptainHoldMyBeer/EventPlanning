@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component';
+import { AppComponent, UploadInterceptor } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
@@ -22,6 +22,8 @@ import { EventService } from './Services/event-service'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { UploadsModule } from '@progress/kendo-angular-upload';
+
 
 
 
@@ -51,9 +53,13 @@ import { DialogsModule } from '@progress/kendo-angular-dialog';
       { path: 'join-event', component: JoinEventComponent },
       { path: 'create-event', component: CreateEventComponent }
     ]),
-      BrowserAnimationsModule, GridModule, DialogsModule
+      BrowserAnimationsModule, GridModule, DialogsModule, UploadsModule
     ],
-    providers: [LoginService, GlobalAppService, EventService],
+    providers: [LoginService, GlobalAppService, EventService, {
+        provide: HTTP_INTERCEPTORS,
+        useClass: UploadInterceptor,
+        multi: true,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
