@@ -41,6 +41,7 @@
     <None Remove="ClientApp\src\app\Services\global-app-service.ts" />
     <None Remove="ClientApp\src\app\Services\hash-service.ts" />
     <None Remove="ClientApp\src\app\Services\login-service.ts" />
+    <None Remove="ClientApp\src\app\user-events\user-events.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,6 +58,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\Services\global-app-service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Services\hash-service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Services\login-service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\user-events\user-events.component.ts" />
   </ItemGroup>
 
   <ItemGroup>

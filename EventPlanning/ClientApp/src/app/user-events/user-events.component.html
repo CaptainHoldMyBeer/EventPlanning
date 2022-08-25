@@ -1,0 +1,35 @@
+﻿<div class="container">
+    <div class="row mt-4">
+        <div class="col-sm"></div>
+        <div class="col-sm text-center">
+            <label class="form-label">My events</label>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+
+    <div class="row align-bottom mt-4">
+        <div class="col-8">
+            <kendo-grid [height]="500">
+                <kendo-grid-column field="name" title="Title"> </kendo-grid-column>
+                <kendo-grid-column field="name" title="Place"> </kendo-grid-column>
+                <kendo-grid-column field="name" title="Date"> </kendo-grid-column>
+                <kendo-grid-column field="name" title="Time"> </kendo-grid-column>
+                <kendo-grid-column field="name" title="Remaining places"> </kendo-grid-column>
+            </kendo-grid>
+        </div>
+
+        <div class="col-4">
+            <kendo-grid [height]="500">
+                <kendo-grid-column field="name" title="Key"> </kendo-grid-column>
+                <kendo-grid-column field="name" title="Value"> </kendo-grid-column>
+            </kendo-grid>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-sm"></div>
+        <div class="col-sm text-center">
+            <button type="submit" class="btn btn-primary">Join</button>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+</div>

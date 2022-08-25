@@ -14,6 +14,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { JoinEventComponent } from './join-event/join-event.component';
 import { AddAdditionalInfoComponent } from './create-event/add-additional-info/add-additional-info.component';
+import { UserEventsComponent } from './user-events/user-events.component';
 
 import { LoginService } from './Services/login-service';
 import { GlobalAppService } from './Services/global-app-service'
@@ -39,7 +40,8 @@ import { UploadsModule } from '@progress/kendo-angular-upload';
     RegistrationComponent,
     CreateEventComponent,
     JoinEventComponent,
-    AddAdditionalInfoComponent
+    AddAdditionalInfoComponent,
+    UserEventsComponent
   ],
   imports: [
       BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -51,7 +53,8 @@ import { UploadsModule } from '@progress/kendo-angular-upload';
       { path: 'login', component: LoginComponent },
       { path: 'registration', component: RegistrationComponent },
       { path: 'join-event', component: JoinEventComponent },
-      { path: 'create-event', component: CreateEventComponent }
+      { path: 'create-event', component: CreateEventComponent },
+      { path: 'user-events', component: UserEventsComponent }
     ]),
       BrowserAnimationsModule, GridModule, DialogsModule, UploadsModule
     ],
