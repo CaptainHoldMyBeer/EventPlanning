@@ -1,38 +1,57 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { GlobalAppService } from '../Services/global-app-service';
+import { LoginService } from '../Services/login-service';
 import { FileRestrictions, FileInfo, SelectEvent, FileState } from '@progress/kendo-angular-upload';
 import { File } from '../Interfaces/file.interface';
+import { User } from '../Interfaces/user.interface';
+import { UserRegistrationFormModel } from '../Models/form.models';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'registration.component',
     templateUrl: './registration.component.html'
 })
 export class RegistrationComponent implements OnInit {
-    public user: any;
     public uploadSaveUrl: any;
     public uploadRemoveUrl: any;
     public selectedFile: File;
 
-    constructor(public globalService: GlobalAppService) {}
+    constructor(public globalService: GlobalAppService, public formModel: UserRegistrationFormModel, public loginService: LoginService) { }
+
     ngOnInit(): void {
         this.uploadRemoveUrl = "removeUrl";
         this.uploadSaveUrl = "saveUrl";
     }
 
-    public getTemplateFile() {
-
-        console.log(this.uploadRemoveUrl);
-        console.log(this.uploadSaveUrl);
-        //let link = document.createElement("a");
-        //link.download = "template";
-        //link.href = this.globalService.templatePath;
-        //link.click();
-    }
-
     public onUploadEvent(e: SelectEvent) {
-        var file = this.getFile(e);
+        this.getFile(e);
     }
 
+    public onRegister() {
+        if (!this.credentialsValid)
+            return;
+
+        var newUser: User = {
+            Email: this.formModel.model.value.Email,
+            Login: this.formModel.model.value.Login,
+            Password: this.formModel.model.value.Password,
+            PinnedFile: this.selectedFile,
+            Id : ''
+        };
+
+        this.loginService.createNewUser(newUser).subscribe((response) => {
+            if (response) {
+
+            }
+        });
+    }
+
+    public getTemplateFile() {
+        let link = document.createElement("a");
+        link.download = "template";
+        link.href = this.globalService.templatePath;
+        link.click();
+    }
 
     private getFile(e: SelectEvent) {
         let file = e.files[0];
@@ -48,8 +67,15 @@ export class RegistrationComponent implements OnInit {
                 }
             };
             reader.readAsDataURL(file.rawFile);
-            
+        }
+    }
+
+    private credentialsValid(): boolean {
+        if (this.formModel.model.value.Password !== this.formModel.model.value.ConfirmedPassword) {
+            alert("Введенные пароли должны совпадать!");
+            return false;
         }
 
+        return true;
     }
 }

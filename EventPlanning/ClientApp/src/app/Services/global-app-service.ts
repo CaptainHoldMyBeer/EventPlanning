@@ -5,4 +5,5 @@ import {User} from '../Interfaces/user.interface'
 export class GlobalAppService {
     public currentUser: User = null;
     public templatePath: string = "../assets/template.xlsx";
+    public api: string = "http://localhost:4201/api/";
 }

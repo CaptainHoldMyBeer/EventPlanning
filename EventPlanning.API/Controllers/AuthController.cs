@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Model.DtoModels;
+using Model.Models;
 
 namespace EventPlanning.API.Controllers
 {
@@ -7,17 +9,17 @@ namespace EventPlanning.API.Controllers
     public class AuthController : ControllerBase
     {
         [Route("authentificate")]
-        [HttpPost]
-        public IActionResult AuthentificateUser()
+        [HttpGet]
+        public IActionResult AuthentificateUser(User existedUser)
         {
-            return Ok("auth user");
+            return Ok();
         }
 
-        [Route("logOut")]
-        [HttpGet]
-        public IActionResult LogOut()
+        [Route("register")]
+        [HttpPost]
+        public IActionResult RegisterUser(CreateUserDto newUser)
         {
-            return Ok("log out");
+            return Ok("registration");
         }
     }
 }

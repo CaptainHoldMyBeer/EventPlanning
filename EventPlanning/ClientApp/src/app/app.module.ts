@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -25,7 +25,7 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { UploadsModule } from '@progress/kendo-angular-upload';
 
-
+import { UserRegistrationFormModel } from './Models/form.models'
 
 
 
@@ -42,10 +42,11 @@ import { UploadsModule } from '@progress/kendo-angular-upload';
     JoinEventComponent,
     AddAdditionalInfoComponent,
     UserEventsComponent
+
   ],
   imports: [
       BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-      HttpClientModule, FormsModule,
+      HttpClientModule, FormsModule, ReactiveFormsModule,
       RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
@@ -58,7 +59,7 @@ import { UploadsModule } from '@progress/kendo-angular-upload';
     ]),
       BrowserAnimationsModule, GridModule, DialogsModule, UploadsModule
     ],
-    providers: [LoginService, GlobalAppService, EventService, {
+    providers: [LoginService, GlobalAppService, EventService, UserRegistrationFormModel, {
         provide: HTTP_INTERCEPTORS,
         useClass: UploadInterceptor,
         multi: true,

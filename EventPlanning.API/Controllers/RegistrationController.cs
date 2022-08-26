@@ -25,14 +25,14 @@ namespace EventPlanning.API.Controllers
             _signInManager = signInManager;
 
             cont = context;
-            var tmp = cont.Events;
-            //_emailService = emailService;
-            cont.Events.Add(new Event
-            {
-                Date = DateTime.Today,
-                Location = "asdsads",
-                Title = "asdasddddd"
-            });
+            //var tmp = cont.Events;
+            ////_emailService = emailService;
+            //cont.Events.Add(new Event
+            //{
+            //    Date = DateTime.Today,
+            //    Location = "asdsads",
+            //    Title = "asdasddddd"
+            //});
         }
 
         [Route("register")]

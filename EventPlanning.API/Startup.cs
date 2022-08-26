@@ -33,7 +33,7 @@ namespace EventPlanning.API
             services.AddTransient<IEmailService, EmailService>();
 
 
-
+            
 
 
             services.AddControllers();
@@ -47,7 +47,10 @@ namespace EventPlanning.API
             }
 
             app.UseRouting();
-
+            app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
             app.UseAuthentication();
             app.UseAuthorization();
 
