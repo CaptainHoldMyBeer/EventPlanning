@@ -25,8 +25,8 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { UploadsModule } from '@progress/kendo-angular-upload';
 
-import { UserRegistrationFormModel } from './Models/form.models'
-
+import { UserRegistrationFormModel } from './Models/form.models';
+import { UserLoginFormModel } from './Models/form.models';
 
 
 @NgModule({
@@ -59,7 +59,7 @@ import { UserRegistrationFormModel } from './Models/form.models'
     ]),
       BrowserAnimationsModule, GridModule, DialogsModule, UploadsModule
     ],
-    providers: [LoginService, GlobalAppService, EventService, UserRegistrationFormModel, {
+    providers: [LoginService, GlobalAppService, EventService, UserRegistrationFormModel, UserLoginFormModel, {
         provide: HTTP_INTERCEPTORS,
         useClass: UploadInterceptor,
         multi: true,

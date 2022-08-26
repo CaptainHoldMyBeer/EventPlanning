@@ -21,4 +21,13 @@ export class LoginService {
 
         return this.client.post<User>(this.appService.api + this.controllerPrefix + "register", newUser, options);
     }
+
+    public loginUser(existedUser: User): Observable<User> {
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+        const options = { headers: headers };
+        //return this.client
+        //    .post<User>(this.appService.api + this.controllerPrefix, newUser, options).pipe(catchError(alert("Ошибка")));
+
+        return this.client.post<User>(this.appService.api + this.controllerPrefix + "login", existedUser, options);
+    }
 }

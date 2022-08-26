@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Infrastructure.Bll.Core.CreateUserService;
 using Infrastructure.Bll.Utils.EmailService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Model;
 using Model.DtoModels;
 using Model.Models;
 
@@ -17,17 +19,24 @@ namespace EventPlanning.API.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IEmailService _emailService;
-        public AuthController(ICreateUser createUser, UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService)
+        private readonly ApplicationContext _context;
+        public AuthController(ICreateUser createUser, UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService, ApplicationContext context)
         {
             _createUser = createUser;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailService = emailService;
+            _context = context;
         }
-        [Route("authentificate")]
-        [HttpGet]
-        public IActionResult AuthentificateUser(User existedUser)
+        [Route("login")]
+        [HttpPost]
+        public async Task<IActionResult> AuthentificateUser(CreateUserDto existedUser)
         {
+            var tm1p = _context.Users.ToList();
+
+            var t = _context.Events.ToList();
+
+            var tmp = await _signInManager.PasswordSignInAsync("t3", "Qweasd123$", false, false);
             return Ok();
         }
 
@@ -56,6 +65,10 @@ namespace EventPlanning.API.Controllers
                         $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
                     addedUser.EmailConfirmed = true;
                 }
+
+
+
+                var ttt = _context.Users.ToList();
 
                 return addedUser;
             }
