@@ -48,29 +48,29 @@ namespace EventPlanning.API.Controllers
         {
             try
             {
-                var user = _userManager.FindByEmailAsync("luperkalfan@gmail.com").Result;
+                //var user = _userManager.FindByEmailAsync("luperkalfan@gmail.com").Result;
 
-                var result = true;
+                //var result = true;
 
-                if (result)
-                {
-                    var code = _userManager.GenerateEmailConfirmationTokenAsync(user).Result;
+                //if (result)
+                //{
+                //    var code = _userManager.GenerateEmailConfirmationTokenAsync(user).Result;
 
-                    var tmp =  _userManager.ConfirmEmailAsync(user, code).Result;
+                //    var tmp =  _userManager.ConfirmEmailAsync(user, code).Result;
 
-                    var callbackUrl = Url.Action(
-                            "ConfirmEmail",
-                            "Account",
-                            new { userId = user.Id, code = code },
-                            protocol: HttpContext.Request.Scheme);
-                    EmailService emailService = new EmailService();
-                    await emailService.SendEmailAsync(user.Email, "Confirm your account",
-                        $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
+                //    var callbackUrl = Url.Action(
+                //            "ConfirmEmail",
+                //            "Account",
+                //            new { userId = user.Id, code = code },
+                //            protocol: HttpContext.Request.Scheme);
+                //    EmailService emailService = new EmailService();
+                //    await emailService.SendEmailAsync(user.Email, "Confirm your account",
+                //        $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
 
-                    user.EmailConfirmed = true;
+                //    user.EmailConfirmed = true;
 
-                    return Ok("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме");
-                }
+                //    return Ok("Для завершения регистрации проверьте электронную почту и перейдите по ссылке, указанной в письме");
+                //}
 
 
                 return Ok("check user");

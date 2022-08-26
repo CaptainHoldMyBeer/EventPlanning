@@ -1,8 +1,6 @@
-﻿using Model.DtoModels;
+﻿using Infrastructure.Bll.Utils.FileService;
+using Model.DtoModels;
 using Model.Models;
-using NPOI.HSSF.UserModel;
-using System.IO;
-using System.Text;
 
 namespace Infrastructure.Bll.Utils.UserProfileService
 {
@@ -10,9 +8,21 @@ namespace Infrastructure.Bll.Utils.UserProfileService
     {
         public User ParseUserProfile(PinnedFile file)
         {
-            var bytes = Encoding.UTF8.GetBytes(file.Src);
-            Stream stream = new MemoryStream(bytes);
-            var tmp = new HSSFWorkbook(stream);
+            var workbook = FileHelper.GetExcelFromPinnedFile(file);
+
+
+            var sheet = workbook.GetSheetAt(0);
+
+            var user = new User()
+            { 
+                Name = sheet.GetRow(1).GetCell(1).StringCellValue,
+                Surname = sheet.GetRow(2).GetCell(1).StringCellValue,
+                Age = (int)sheet.GetRow(3).GetCell(1).NumericCellValue, 
+                Address = sheet.GetRow(4).GetCell(1).StringCellValue,
+            };
+
+
+            return user;
         }
     }
 }

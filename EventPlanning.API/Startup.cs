@@ -1,3 +1,4 @@
+using Infrastructure.Bll.Core.CreateUserService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Model;
 using Infrastructure.Bll.Utils;
 using Infrastructure.Bll.Utils.EmailService;
+using Infrastructure.Bll.Utils.UserProfileService;
 using Model.Models;
 using Microsoft.AspNetCore.Identity;
 
@@ -31,11 +33,9 @@ namespace EventPlanning.API
                 .AddDefaultTokenProviders();
 
             services.AddTransient<IEmailService, EmailService>();
-
-
+            services.AddTransient<IUserProfileService, UserProfileService>();
+            services.AddTransient<ICreateUser, CreateUser>();
             
-
-
             services.AddControllers();
         }
 
