@@ -1,5 +1,10 @@
 ﻿import { Component } from '@angular/core'
 import { EventInfo } from '../Interfaces/event-information.interface'
+import { EventFormModel} from '../Models/form.models';
+import { FormControl } from '@angular/forms';
+import { EventService } from "../Services/event-service";
+import { GlobalAppService } from "../Services/global-app-service";
+import { Event } from "../Interfaces/event.interface";
 
 @Component({
     selector: 'create-event.component',
@@ -8,48 +13,50 @@ import { EventInfo } from '../Interfaces/event-information.interface'
 })
 export class CreateEventComponent {
     public user: any;
-    public data: Element[] = ELEMENT_DATA;
     public openDialogWindow: boolean = false;
+    public newEvent: Event;
+    public additionalInfo: EventInfo[] = []; 
 
+    constructor(public globalService: GlobalAppService,
+        public formModel: EventFormModel,
+        public eventService: EventService) {
+
+    }
 
     public openDialogWindowCommand() {
         this.openDialogWindow = true;
     }
 
     public closeDialogWindowCommand(e: boolean) {
-        console.log("te");
         this.openDialogWindow = false;
     }
 
     public onAddNewInformation(newInfo: EventInfo) {
-        let tmp = newInfo;
-        alert(tmp);
+        this.additionalInfo.push(newInfo);
+        this.openDialogWindow = false;
+    }
+
+    public onCreate() {
+        this.createNewEvent();
+
+        this.eventService.createNewEvent(this.newEvent).subscribe((response) => {
+            if (response) {
+                alert(response);
+            }
+        });
+    }
+
+    private createNewEvent() {
+        this.newEvent = {
+            Title: this.formModel.model.value.Title,
+            Location: this.formModel.model.value.Location,
+            Date: this.formModel.model.value.Date,
+            Time: this.formModel.model.value.Time,
+            MaxMembers: this.formModel.model.value.MaxMembers,
+            AdditionalInfo: this.additionalInfo,
+            UserId: this.globalService.userId
+        };
+
     }
 }
-export interface Element {
-    name: string;
-    weight: string;
-}
 
-const ELEMENT_DATA: Element[] = [
-    { name: 'Hydrogen', weight: "asdasdasd"},
-    { name: 'Helium', weight: "asdasdasd", },
-    { name: 'Lithium', weight: "asdasdasd",  },
-    { name: 'Beryllium', weight: "asdasdasd", },
-    { name: 'Boron', weight: "asdasdasd", },
-    { name: 'Carbon', weight: "asdasdasd", },
-    { name: 'Nitrogen', weight: "asdasdasd",  },
-    { name: 'Oxygen', weight: "asdasdasd", },
-    { name: 'Fluorine', weight: "asdasdasd",  },
-    { name: 'Neon', weight: "asdasdasd",  },
-    { name: 'Sodium', weight: "asdasdasd",  },
-    { name: 'Magnesium', weight: "asdasdasd",  },
-    { name: 'Aluminum', weight: "asdasdasd",  },
-    { name: 'Silicon', weight: "asdasdasd", },
-    { name: 'Phosphorus', weight: "asdasdasd",  },
-    { name: 'Sulfur', weight: "asdasdasd",  },
-    { name: 'Chlorine', weight: "asdasdasd",  },
-    { name: 'Argon', weight: "asdasdasd",  },
-    { name: 'Potassium', weight: "asdasdasd",  },
-    { name: 'Calcium', weight: "asdasdasd",  },
-];

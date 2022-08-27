@@ -1,13 +1,13 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Infrastructure.Bll.Core.CreateUserService;
+﻿using Infrastructure.Bll.Core.CreateUserService;
+using Infrastructure.Bll.Core.LoginUserService;
 using Infrastructure.Bll.Utils.EmailService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Model;
 using Model.DtoModels;
 using Model.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace EventPlanning.API.Controllers
 {
@@ -17,32 +17,33 @@ namespace EventPlanning.API.Controllers
     {
         private readonly ICreateUser _createUser;
         private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
         private readonly IEmailService _emailService;
-        private readonly ApplicationContext _context;
-        public AuthController(ICreateUser createUser, UserManager<User> userManager, SignInManager<User> signInManager, IEmailService emailService, ApplicationContext context)
+        private readonly ILoginUserService _loginUser;
+        public AuthController(ICreateUser createUser, UserManager<User> userManager, IEmailService emailService, ILoginUserService loginUser)
         {
             _createUser = createUser;
             _userManager = userManager;
-            _signInManager = signInManager;
             _emailService = emailService;
-            _context = context;
+            _loginUser = loginUser;
         }
         [Route("login")]
         [HttpPost]
-        public async Task<IActionResult> AuthentificateUser(CreateUserDto existedUser)
+        public async Task<int> AuthenticateUser(CreateUserDto existedUser)
         {
-            var tm1p = _context.Users.ToList();
+            try
+            {
+                return await _loginUser.LoginUser(existedUser);
 
-            var t = _context.Events.ToList();
-
-            var tmp = await _signInManager.PasswordSignInAsync("t3", "Qweasd123$", false, false);
-            return Ok();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error while login user.");
+            }
         }
 
         [Route("register")]
         [HttpPost]
-        public async Task<User> RegisterUser(CreateUserDto newUser)
+        public async Task<int> RegisterUser(CreateUserDto newUser)
         {
             try
             {
@@ -67,10 +68,7 @@ namespace EventPlanning.API.Controllers
                 }
 
 
-
-                var ttt = _context.Users.ToList();
-
-                return addedUser;
+                return addedUser.Id;
             }
             catch (ArgumentNullException ex)
             {

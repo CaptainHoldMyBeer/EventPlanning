@@ -30,6 +30,7 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\create-event\add-additional-info\add-additional-info.component.ts" />
     <None Remove="ClientApp\src\app\create-event\create-event.component.ts" />
+    <None Remove="ClientApp\src\app\Guards\navigate-guard.ts" />
     <None Remove="ClientApp\src\app\Interfaces\event-information.interface.ts" />
     <None Remove="ClientApp\src\app\Interfaces\event.interface.ts" />
     <None Remove="ClientApp\src\app\Interfaces\file.interface.ts" />
@@ -48,6 +49,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\create-event\add-additional-info\add-additional-info.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\create-event\create-event.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Guards\navigate-guard.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Interfaces\event-information.interface.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Interfaces\event.interface.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Interfaces\file.interface.ts" />

@@ -22,15 +22,21 @@ namespace Infrastructure.Bll.Core.CreateUserService
 
         public async Task<IdentityResult> AddNewUser(CreateUserDto model)
         {
+            var user = GetUserFromModel(model);
+
+            return await _userManager.CreateAsync(user, model.Password);
+        }
+
+        private User GetUserFromModel(CreateUserDto model)
+        {
             if (model == null)
                 throw new ArgumentNullException(nameof(model));
 
-            var user = _userProfileService.ParseUserProfile(model.PinnedFile);
+            var user = _userProfileService.ParseUserProfile(null);
             user.UserName = model.Login;
             user.Email = model.Email;
 
-
-            return await _userManager.CreateAsync(user, model.Password);
+            return user;
         }
     }
 }

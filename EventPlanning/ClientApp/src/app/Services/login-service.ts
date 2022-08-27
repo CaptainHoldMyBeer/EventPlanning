@@ -9,25 +9,21 @@ import { catchError, retry } from 'rxjs/operators';
 @Injectable()
 export class LoginService {
 
-    private controllerPrefix: string = "auth/"
+    private controllerPrefix: string = "auth/";
 
     constructor(private client: HttpClient, private appService: GlobalAppService) { }
 
-    public createNewUser(newUser: User): Observable<User> {
+    public createNewUser(newUser: User): Observable<number> {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
         const options = { headers: headers };
-        //return this.client
-        //    .post<User>(this.appService.api + this.controllerPrefix, newUser, options).pipe(catchError(alert("Ошибка")));
 
-        return this.client.post<User>(this.appService.api + this.controllerPrefix + "register", newUser, options);
+        return this.client.post<number>(this.appService.api + this.controllerPrefix + "register", newUser, options);
     }
 
-    public loginUser(existedUser: User): Observable<User> {
+    public loginUser(existedUser: User): Observable<number> {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
         const options = { headers: headers };
-        //return this.client
-        //    .post<User>(this.appService.api + this.controllerPrefix, newUser, options).pipe(catchError(alert("Ошибка")));
 
-        return this.client.post<User>(this.appService.api + this.controllerPrefix + "login", existedUser, options);
+        return this.client.post<number>(this.appService.api + this.controllerPrefix + "login", existedUser, options);
     }
 }

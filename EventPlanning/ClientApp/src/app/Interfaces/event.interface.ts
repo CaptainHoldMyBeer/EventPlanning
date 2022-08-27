@@ -2,9 +2,12 @@
 
 export interface Event {
     Title: string;
-    Id: number;
+    Id?: number;
     Location: string;
     Date: Date;
-    Author: string;
-    AdditionalInfo: Array<EventInfo>
+    Author?: string;
+    Time: string;
+    MaxMembers: number;
+    AdditionalInfo?: Array<EventInfo>;
+    UserId: number;
 }

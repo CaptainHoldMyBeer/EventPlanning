@@ -36,3 +36,23 @@ export class UserLoginFormModel {
         });
     }
 }
+
+@Injectable()
+export class EventFormModel {
+    public model: FormGroup;
+    public formBuilder: FormBuilder = new FormBuilder();
+
+    constructor() {
+        this.createForm();
+    }
+
+    createForm() {
+        this.model = this.formBuilder.group({
+            Title: ['', [Validators.required]],
+            Location: ['', [Validators.required]],
+            Date: ['', [Validators.required]],
+            Time: ['', [Validators.required]],
+            MaxMembers: [0,[Validators.required]]
+        });
+    }
+}

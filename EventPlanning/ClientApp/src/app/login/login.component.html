@@ -1,4 +1,4 @@
-﻿<form class="row g-3" [formGroup]="formModel.model">
+﻿<form class="row g-3" [formGroup]="formModel.model" *ngIf="!globalService.isUserAuthenticated">
     <div class="col-md-6 mt-4">
         <label class="form-label">Login</label>
     </div>
@@ -19,3 +19,13 @@
     </div>
 
 </form>
+
+<div *ngIf="globalService.isUserAuthenticated">
+    <div class="row mt-4">
+        <div class="col-sm"></div>
+        <div class="col-sm text-center">
+            <label class="form-label">Logged in</label>
+        </div>
+        <div class="col-sm"></div>
+    </div>
+</div>

@@ -4,6 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Infrastructure.Bll.Core.EventProviderService;
+using Model;
+using Model.DtoModels;
+using NPOI.OpenXmlFormats.Wordprocessing;
 
 namespace EventPlanning.API.Controllers
 {
@@ -11,40 +15,42 @@ namespace EventPlanning.API.Controllers
     [ApiController]
     public class EventController : ControllerBase
     {
-
+        private readonly IEventProvider _eventProvider;
+        private readonly ApplicationContext _context;
+        public EventController(IEventProvider eventProvider, ApplicationContext context)
+        {
+            _eventProvider = eventProvider;
+            _context = context;
+        }
         [Route("createEvent")]
         [HttpPost]
-        public IActionResult CreateEvent()
+        public async Task<bool> CreateEvent(EventDto newEvent)
         {
-            return Ok("create");
-        }
-
-        [Route("getInfo")]
-        [HttpGet]
-        public IActionResult GetEventInformation()
-        {
-            return Ok("get info");
+            try
+            {
+                return await _eventProvider.CreateEvent(newEvent);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while adding new Event");
+            }
         }
 
         [Route("getAllEvents")]
         [HttpGet]
-        public IActionResult GetAllEvents()
+        public async Task<List<EventDto>> GetAllEvents()
         {
-            return Ok("get all");
+            try
+            {
+                var tmp = _context.Events.ToList();
+                var t = _context.EventUsers.ToList();
+                return await _eventProvider.GetAllEvents();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while adding new Event");
+            }
         }
 
-        [Route("delete")]
-        [HttpDelete]
-        public IActionResult DeleteEvent()
-        {
-            return Ok("delete");
-        }
-
-        [Route("EditEvent")]
-        [HttpPut]
-        public IActionResult EditEvent()
-        {
-            return Ok("edit");
-        }
     }
 }

@@ -2,10 +2,11 @@
 import { GlobalAppService } from '../Services/global-app-service';
 import { LoginService } from '../Services/login-service';
 import { FileRestrictions, FileInfo, SelectEvent, FileState } from '@progress/kendo-angular-upload';
-import { File } from '../Interfaces/file.interface';
+//import { File } from '../Interfaces/file.interface';
 import { User } from '../Interfaces/user.interface';
 import { UserRegistrationFormModel } from '../Models/form.models';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'registration.component',
@@ -16,7 +17,8 @@ export class RegistrationComponent implements OnInit {
     public uploadRemoveUrl: any;
     public selectedFile: File;
 
-    constructor(public globalService: GlobalAppService, public formModel: UserRegistrationFormModel, public loginService: LoginService) { }
+
+    constructor(public globalService: GlobalAppService, public formModel: UserRegistrationFormModel, public loginService: LoginService, private router: Router) { }
 
     ngOnInit(): void {
         this.uploadRemoveUrl = "removeUrl";
@@ -35,13 +37,15 @@ export class RegistrationComponent implements OnInit {
             Email: this.formModel.model.value.Email,
             Login: this.formModel.model.value.Login,
             Password: this.formModel.model.value.Password,
-            PinnedFile: this.selectedFile,
-            Id : ''
+            PinnedFile: this.selectedFile
         };
 
-        this.loginService.createNewUser(newUser).subscribe((response) => {
-            if (response) {
-
+        this.loginService.createNewUser(newUser).subscribe((addedId) => {
+            if (addedId) {
+                this.globalService.isUserAuthenticated = true;
+                this.globalService.userId = addedId;
+                alert("Welcome");
+                this.router.navigate(['/user-events']);
             }
         });
     }
@@ -56,17 +60,23 @@ export class RegistrationComponent implements OnInit {
     private getFile(e: SelectEvent) {
         let file = e.files[0];
         if (file.rawFile) {
+
+            
             const reader = new FileReader();
 
-            reader.onloadend = () => {
-                this.selectedFile = {
-                    Name: file.name,
-                    Size: file.size,
-                    Src: <string>reader.result,
-                    Uid: file.uid
-                }
-            };
-            reader.readAsDataURL(file.rawFile);
+
+            var tmp = reader.readAsArrayBuffer(file.rawFile);
+
+            var t = 123;
+            //reader.onloadend = () => {
+            //    this.selectedFile = {
+            //        Name: file.name,
+            //        Size: file.size,
+            //        Src: <string>reader.result,
+            //        Uid: file.uid
+            //    }
+            //};
+            //reader.readAsDataURL(file.rawFile);
         }
     }
 

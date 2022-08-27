@@ -25,9 +25,8 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { UploadsModule } from '@progress/kendo-angular-upload';
 
-import { UserRegistrationFormModel } from './Models/form.models';
-import { UserLoginFormModel } from './Models/form.models';
-
+import { UserRegistrationFormModel, UserLoginFormModel, EventFormModel } from './Models/form.models';
+import { NavigateGuard } from "./Guards/navigate-guard";
 
 @NgModule({
   declarations: [
@@ -53,13 +52,14 @@ import { UserLoginFormModel } from './Models/form.models';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'login', component: LoginComponent },
       { path: 'registration', component: RegistrationComponent },
-      { path: 'join-event', component: JoinEventComponent },
-      { path: 'create-event', component: CreateEventComponent },
-      { path: 'user-events', component: UserEventsComponent }
+      { path: 'join-event', component: JoinEventComponent, canActivate: [NavigateGuard] },
+      { path: 'create-event', component: CreateEventComponent, canActivate: [NavigateGuard] },
+      { path: 'user-events', component: UserEventsComponent, canActivate: [NavigateGuard] }
     ]),
       BrowserAnimationsModule, GridModule, DialogsModule, UploadsModule
     ],
-    providers: [LoginService, GlobalAppService, EventService, UserRegistrationFormModel, UserLoginFormModel, {
+    providers: [LoginService, GlobalAppService, EventService, UserRegistrationFormModel, UserLoginFormModel,
+        EventFormModel, NavigateGuard, {
         provide: HTTP_INTERCEPTORS,
         useClass: UploadInterceptor,
         multi: true,

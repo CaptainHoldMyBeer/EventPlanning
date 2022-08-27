@@ -11,10 +11,7 @@ namespace Model.Models
         public string Title { get; set; }
         public DateTime Date { get; set; }
         public string Location { get; set; }
-        public virtual ICollection<EventInfo> Information { get; set; }
-        public virtual ICollection<User> Guests { get; set; }
-        public int AuthorId { get; set; }
-        [ForeignKey("AuthorId")]
-        public virtual User Author { get; set; }
+        public List<EventInfo> Information { get; set; }
+        public List<Event_User> EventUsers { get; set; }
     }
 }

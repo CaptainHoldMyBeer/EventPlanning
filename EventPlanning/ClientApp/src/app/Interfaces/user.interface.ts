@@ -1,9 +1,8 @@
-﻿import {File} from '../Interfaces/file.interface'
-
+﻿
 export interface User {
-    Id?: string;
+    Id?: number;
     Login: string;
     Email?: string;
-    Password: string;
-    PinnedFile?: File
+    Password?: string;
+    PinnedFile?: File;
 }

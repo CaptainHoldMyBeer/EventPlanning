@@ -1,87 +1,89 @@
 ﻿<div class="container">
-    <div class="row mt-4">
-        <div class="col-sm"></div>
-        <div class="col-sm text-center">
-            <label class="form-label">Create event</label>
+    <form [formGroup] ="formModel.model">
+        <div class="row mt-4">
+            <div class="col-sm"></div>
+            <div class="col-sm text-center">
+                <label class="form-label">Create event</label>
+            </div>
+            <div class="col-sm"></div>
         </div>
-        <div class="col-sm"></div>
-    </div>
 
-    <div class="row align-bottom mt-4">
-        <div class="col-sm">
-            <label>Title</label>
-        </div>
-        <div class="col-sm">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col-sm">
+        <div class="row align-bottom mt-4">
+            <div class="col-sm">
+                <label>Title</label>
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" formControlName="Title">
+            </div>
+            <div class="col-sm">
 
+            </div>
         </div>
-    </div>
 
-    <div class="row align-bottom mt-4">
-        <div class="col-sm">
-            <label>Location</label>
+        <div class="row align-bottom mt-4">
+            <div class="col-sm">
+                <label>Location</label>
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" formControlName="Location">
+            </div>
+            <div class="col-sm"></div>
         </div>
-        <div class="col-sm">
-            <input type="text" class="form-control">
-        </div>
-        <div class="col-sm"></div>
-    </div>
 
-    <div class="row align-bottom mt-4">
-        <div class="col-sm">
-            <label>Date</label>
+        <div class="row align-bottom mt-4">
+            <div class="col-sm">
+                <label>Date</label>
+            </div>
+            <div class="col-sm">
+                <input type="date" class="form-control" formControlName="Date">
+            </div>
+            <div class="col-sm"></div>
         </div>
-        <div class="col-sm">
-            <input type="date" class="form-control">
-        </div>
-        <div class="col-sm"></div>
-    </div>
 
-    <div class="row align-bottom mt-4">
-        <div class="col-sm">
-            <label>Time</label>
+        <div class="row align-bottom mt-4">
+            <div class="col-sm">
+                <label>Time</label>
+            </div>
+            <div class="col-sm">
+                <input type="time" class="form-control" formControlName="Time">
+            </div>
+            <div class="col-sm"></div>
         </div>
-        <div class="col-sm">
-            <input type="time" class="form-control">
-        </div>
-        <div class="col-sm"></div>
-    </div>
 
-    <div class="row align-bottom mt-4">
-        <div class="col-sm">
-            <label>Max members</label>
+        <div class="row align-bottom mt-4">
+            <div class="col-sm">
+                <label>Max members</label>
+            </div>
+            <div class="col-sm">
+                <input type="number" class="form-control" formControlName="MaxMembers">
+            </div>
+            <div class="col-sm"></div>
         </div>
-        <div class="col-sm">
-            <input type="number" class="form-control">
-        </div>
-        <div class="col-sm"></div>
-    </div>
 
-    <div class="row align-bottom mt-4">
-        <div class="col-sm">
-            <button class="btn btn-primary" (click)="openDialogWindowCommand()">Add info</button>
+        <div class="row align-bottom mt-4">
+            <div class="col-sm">
+                <button class="btn btn-primary" (click)="openDialogWindowCommand()">Add info</button>
+            </div>
+            <div class="col-sm ">
+                <kendo-grid [data]="additionalInfo"
+                            [height]="300">
+                    <kendo-grid-column field="Key" title="key"> </kendo-grid-column>
+                    <kendo-grid-column field="Value" title="value"> </kendo-grid-column>
+                </kendo-grid>
+            </div>
+            <div class="col-sm"></div>
         </div>
-        <div class="col-sm ">
-            <kendo-grid [data]="data"
-                        [height]="300">
-                <kendo-grid-column field="name" title="name"> </kendo-grid-column>
-                <kendo-grid-column field="weight" title="weight"> </kendo-grid-column>
-            </kendo-grid>
-        </div>
-        <div class="col-sm"></div>
-    </div>
 
-    <div class="row align-bottom mt-4">
-        <div class="col-sm">
+        <div class="row align-bottom mt-4">
+            <div class="col-sm">
 
+            </div>
+            <div class="col-sm text-center">
+                <button type="submit" class="btn btn-primary" (click)="onCreate()">Create</button>
+            </div>
+            <div class="col-sm"></div>
         </div>
-        <div class="col-sm text-center">
-            <button type="submit" class="btn btn-primary">Create</button>
-        </div>
-        <div class="col-sm"></div>
-    </div>
+    </form>
 </div>
 
 <add-additional-info *ngIf="openDialogWindow"

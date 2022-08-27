@@ -1,6 +1,6 @@
 <img src="./assets/main-logo.jpg">
 
-<div class="row">
+<div class="row" *ngIf="!isUserAuthenticated">
     <button type="button" class="btn btn-primary btn-lg btn-block" routerLink="/login">Login</button>
     <button type="button" class="btn btn-secondary btn-lg btn-block" routerLink="/registration">Registration</button>
 </div>
