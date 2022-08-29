@@ -1,14 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Model.DtoModels;
 using System.Threading.Tasks;
-using Model.DtoModels;
 
 namespace Infrastructure.Bll.Core.LoginUserService
 {
     public interface ILoginUserService
     {
-        Task<int> LoginUser(CreateUserDto user);
+        Task<int> LoginUser(UserDto user);
     }
 }

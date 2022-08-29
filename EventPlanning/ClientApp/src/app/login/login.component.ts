@@ -19,6 +19,10 @@ export class LoginComponent implements OnInit {
 
     }
 
+    get loginFormControl() {
+        return this.formModel.model.controls;
+    }
+
     public singIn() {
         var newUser: User = {
             Login: this.formModel.model.value.Login,

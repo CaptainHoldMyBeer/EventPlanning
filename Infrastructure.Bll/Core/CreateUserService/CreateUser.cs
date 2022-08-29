@@ -1,40 +1,61 @@
-﻿using Model.DtoModels;
+﻿using Microsoft.AspNetCore.Identity;
+using Model.DtoModels;
 using Model.Models;
 using System;
-using System.Security.Policy;
+using System.Linq;
 using System.Threading.Tasks;
-using Infrastructure.Bll.Utils.EmailService;
-using Infrastructure.Bll.Utils.UserProfileService;
-using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Bll.Core.CreateUserService
 {
     public class CreateUser : ICreateUser
     {
-        private readonly IUserProfileService _userProfileService;
         private readonly UserManager<User> _userManager;
 
-        public CreateUser(IUserProfileService userProfileService, UserManager<User> userManager)
+        public CreateUser(UserManager<User> userManager)
         {
-            _userProfileService = userProfileService;
             _userManager = userManager;
         }
 
-        public async Task<IdentityResult> AddNewUser(CreateUserDto model)
-        {
-            var user = GetUserFromModel(model);
 
-            return await _userManager.CreateAsync(user, model.Password);
+        public async Task<User> AddNewUser(UserDto model)
+        {
+            try
+            {
+                var user = GetUserFromModel(model);
+                var addUserTask = await _userManager.CreateAsync(user, model.Password);
+
+                if (addUserTask.Succeeded)
+                {
+                    var addedUser = _userManager.Users.First(p => p.UserName == user.UserName);
+
+                    return addedUser;
+                }
+                else
+                {
+                    throw new Exception("Error while adding new user");
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            
         }
 
-        private User GetUserFromModel(CreateUserDto model)
+        private User GetUserFromModel(UserDto model)
         {
             if (model == null)
                 throw new ArgumentNullException(nameof(model));
 
-            var user = _userProfileService.ParseUserProfile(null);
-            user.UserName = model.Login;
-            user.Email = model.Email;
+            var user = new User
+            {
+                UserName = model.Login,
+                Email = model.Email,
+                Name = model.Name,
+                Surname = model.Surname,
+                Age = model.Age,
+                Address = model.Location
+            };
 
             return user;
         }

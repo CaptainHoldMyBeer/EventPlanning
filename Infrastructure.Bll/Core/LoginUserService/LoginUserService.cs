@@ -18,7 +18,7 @@ namespace Infrastructure.Bll.Core.LoginUserService
             _signInManager = signInManager;
             _userManager = userManager;
         }
-        public async Task<int> LoginUser(CreateUserDto user)
+        public async Task<int> LoginUser(UserDto user)
         {
             var loginResult =  await _signInManager.PasswordSignInAsync(user.Login, user.Password, false, false);
 

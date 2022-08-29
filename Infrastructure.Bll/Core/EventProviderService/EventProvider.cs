@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Infrastructure.Dal.Core.EventDalService;
+﻿using Infrastructure.Dal.Core.EventDalService;
 using Model.DtoModels;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Bll.Core.EventProviderService
 {
@@ -20,9 +17,19 @@ namespace Infrastructure.Bll.Core.EventProviderService
            return await _eventDal.AddNewEvent(newEvent);
         }
 
-        public Task<List<EventDto>> GetAllEvents()
+        public List<EventDto> GetAllEvents()
         {
-            throw new NotImplementedException("Sdsad");
+            return _eventDal.GetAllEvents();
+        }
+
+        public List<EventDto> GetAllEventsByUserId(int userId)
+        {
+            return _eventDal.GetAllEventsByUserId(userId);
+        }
+
+        public bool JoinEvent(int userId, int eventId)
+        {
+            return _eventDal.JoinEvent(userId, eventId);
         }
 
     }

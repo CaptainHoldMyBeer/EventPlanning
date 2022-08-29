@@ -1,8 +1,10 @@
-﻿
-export interface User {
+﻿export interface User {
     Id?: number;
     Login: string;
     Email?: string;
     Password?: string;
-    PinnedFile?: File;
+    Name?: string;
+    Surname?: string;
+    Age?: number;
+    Location?: string;
 }

@@ -15,7 +15,11 @@ export class UserRegistrationFormModel {
             Login: ['', [Validators.required]],
             Email: ['', [Validators.required, Validators.email]],
             Password: ['', [Validators.required, Validators.minLength(8)]],
-            ConfirmedPassword: ['', [Validators.required]]
+            ConfirmedPassword: ['', [Validators.required, Validators.minLength(8)]],
+            Name: ['', [Validators.required]],
+            Surname: ['', [Validators.required]],
+            Age: [null, [Validators.required]],
+            Location: ['', [Validators.required]]
         });
     }
 }

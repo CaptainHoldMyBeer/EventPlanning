@@ -1,13 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Infrastructure.Bll.Core.EventProviderService;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Infrastructure.Bll.Core.EventProviderService;
 using Model;
 using Model.DtoModels;
-using NPOI.OpenXmlFormats.Wordprocessing;
+using System;
+using System.Threading.Tasks;
 
 namespace EventPlanning.API.Controllers
 {
@@ -24,31 +20,32 @@ namespace EventPlanning.API.Controllers
         }
         [Route("createEvent")]
         [HttpPost]
-        public async Task<bool> CreateEvent(EventDto newEvent)
+        public async Task<IActionResult> CreateEvent(EventDto newEvent)
         {
             try
             {
-                return await _eventProvider.CreateEvent(newEvent);
+                var result = await _eventProvider.CreateEvent(newEvent);
+
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while adding new Event");
+                return StatusCode(500);
             }
         }
 
         [Route("getAllEvents")]
         [HttpGet]
-        public async Task<List<EventDto>> GetAllEvents()
+        public IActionResult GetAllEvents()
         {
             try
             {
-                var tmp = _context.Events.ToList();
-                var t = _context.EventUsers.ToList();
-                return await _eventProvider.GetAllEvents();
+                var result = _eventProvider.GetAllEvents();
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while adding new Event");
+                return StatusCode(500);
             }
         }
 

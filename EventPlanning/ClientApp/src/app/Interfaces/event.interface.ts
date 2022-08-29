@@ -6,8 +6,8 @@ export interface Event {
     Location: string;
     Date: Date;
     Author?: string;
-    Time: string;
     MaxMembers: number;
+    CurrentMembers: number;
     AdditionalInfo?: Array<EventInfo>;
     UserId: number;
 }

@@ -23,6 +23,10 @@ export class CreateEventComponent {
 
     }
 
+    get createEventFormControl() {
+        return this.formModel.model.controls;
+    }
+
     public openDialogWindowCommand() {
         this.openDialogWindow = true;
     }
@@ -50,13 +54,25 @@ export class CreateEventComponent {
         this.newEvent = {
             Title: this.formModel.model.value.Title,
             Location: this.formModel.model.value.Location,
-            Date: this.formModel.model.value.Date,
-            Time: this.formModel.model.value.Time,
+            Date: this.getDateTime(this.formModel.model.value.Date, this.formModel.model.value.Time),
             MaxMembers: this.formModel.model.value.MaxMembers,
             AdditionalInfo: this.additionalInfo,
-            UserId: this.globalService.userId
+            UserId: this.globalService.userId,
+            CurrentMembers: 0
         };
 
+    }
+
+    private getDateAndTimeOfEvent() {
+
+    }
+
+    private getDateTime(date: string, time: string ): Date {
+        var newDate = new Date(date);
+        newDate.setHours(+time.split(':')[0]);
+        newDate.setHours(+time.split(':')[1]);
+
+        return newDate;
     }
 }
 

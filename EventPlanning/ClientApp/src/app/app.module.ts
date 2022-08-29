@@ -53,7 +53,7 @@ import { NavigateGuard } from "./Guards/navigate-guard";
       { path: 'login', component: LoginComponent },
       { path: 'registration', component: RegistrationComponent },
       { path: 'join-event', component: JoinEventComponent, canActivate: [NavigateGuard] },
-      { path: 'create-event', component: CreateEventComponent, canActivate: [NavigateGuard] },
+      { path: 'create-event', component: CreateEventComponent/*, canActivate: [NavigateGuard] */},
       { path: 'user-events', component: UserEventsComponent, canActivate: [NavigateGuard] }
     ]),
       BrowserAnimationsModule, GridModule, DialogsModule, UploadsModule

@@ -1,5 +1,5 @@
 ﻿<div class="container">
-    <form [formGroup] ="formModel.model">
+    <form [formGroup]="formModel.model">
         <div class="row mt-4">
             <div class="col-sm"></div>
             <div class="col-sm text-center">
@@ -14,6 +14,9 @@
             </div>
             <div class="col-sm">
                 <input type="text" class="form-control" formControlName="Login">
+                <div *ngIf="registerFormControl.Login.errors?.required" class="alert alert-danger">
+                    Login is required
+                </div>
             </div>
             <div class="col-sm">
 
@@ -26,6 +29,9 @@
             </div>
             <div class="col-sm">
                 <input type="email" class="form-control" formControlName="Email">
+                <div *ngIf="registerFormControl.Email.errors?.required || registerFormControl.Email.errors?.email" class="alert alert-danger">
+                    Не указано имя
+                </div>
             </div>
             <div class="col-sm">
 
@@ -38,6 +44,9 @@
             </div>
             <div class="col-sm">
                 <input type="password" class="form-control" formControlName="Password">
+                <div *ngIf="registerFormControl.Password.errors?.required" class="alert alert-danger">
+                    Не указано имя
+                </div>
             </div>
             <div class="col-sm"></div>
         </div>
@@ -48,17 +57,61 @@
             </div>
             <div class="col-sm">
                 <input type="password" class="form-control" formControlName="ConfirmedPassword">
+                <div *ngIf="registerFormControl.ConfirmedPassword.errors?.required" class="alert alert-danger">
+                    Не указано имя
+                </div>
             </div>
             <div class="col-sm"></div>
         </div>
 
         <div class="row align-bottom mt-4">
             <div class="col-sm">
-
+                <label>Name</label>
             </div>
             <div class="col-sm">
-                <kendo-upload [saveUrl]="uploadSaveUrl" [removeUrl]="uploadRemoveUrl" (upload)="onUploadEvent($event)">
-                </kendo-upload>
+                <input type="text" class="form-control" formControlName="Name">
+                <div *ngIf="registerFormControl.Name.errors?.required" class="alert alert-danger">
+                    Не указано имя
+                </div>
+            </div>
+            <div class="col-sm"></div>
+        </div>
+
+        <div class="row align-bottom mt-4">
+            <div class="col-sm">
+                <label>Surname</label>
+            </div>
+            <div class="col-sm">
+                <input type="password" class="form-control" formControlName="Surname">
+                <div *ngIf="registerFormControl.Surname.errors?.required" class="alert alert-danger">
+                    Не указано имя
+                </div>
+            </div>
+            <div class="col-sm"></div>
+        </div>
+
+        <div class="row align-bottom mt-4">
+            <div class="col-sm">
+                <label>Age</label>
+            </div>
+            <div class="col-sm">
+                <input type="number" class="form-control" formControlName="Age">
+                <div *ngIf="registerFormControl.Age.errors?.required" class="alert alert-danger">
+                    Не указано имя
+                </div>
+            </div>
+            <div class="col-sm"></div>
+        </div>
+
+        <div class="row align-bottom mt-4">
+            <div class="col-sm">
+                <label>Location</label>
+            </div>
+            <div class="col-sm">
+                <input type="text" class="form-control" formControlName="Location">
+                <div *ngIf="registerFormControl.Location.errors?.required" class="alert alert-danger">
+                    Не указано имя
+                </div>
             </div>
             <div class="col-sm"></div>
         </div>
@@ -69,7 +122,6 @@
             </div>
             <div class="col-sm text-center">
                 <button type="submit" class="btn btn-primary" [disabled]="!formModel.model.valid" (click)="onRegister()">Register</button>
-                <button class="btn btn-primary ml-2" (click)="getTemplateFile()">Get template</button>
             </div>
             <div class="col-sm"></div>
         </div>

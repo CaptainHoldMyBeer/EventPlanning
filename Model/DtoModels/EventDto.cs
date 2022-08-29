@@ -12,7 +12,6 @@ namespace Model.DtoModels
         public string Title { get; set; }
         public string Location { get; set; }
         public DateTime Date { get; set; }
-        public string Time { get; set; }
         public int MaxMembers { get; set; }
         public List<EventInfoDto> AdditionalInfo { get; set; }
         public int CurrentMembers { get; set; }

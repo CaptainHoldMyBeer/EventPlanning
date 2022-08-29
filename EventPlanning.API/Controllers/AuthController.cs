@@ -3,7 +3,6 @@ using Infrastructure.Bll.Core.LoginUserService;
 using Infrastructure.Bll.Utils.EmailService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Model;
 using Model.DtoModels;
 using Model.Models;
 using System;
@@ -28,55 +27,46 @@ namespace EventPlanning.API.Controllers
         }
         [Route("login")]
         [HttpPost]
-        public async Task<int> AuthenticateUser(CreateUserDto existedUser)
+        public async Task<IActionResult> AuthenticateUser(UserDto existedUser)
         {
             try
             {
-                return await _loginUser.LoginUser(existedUser);
+                var result = await _loginUser.LoginUser(existedUser);
+
+                return Ok(result);
 
             }
             catch (Exception)
             {
-                throw new Exception("Error while login user.");
+                return StatusCode(500);
             }
         }
 
         [Route("register")]
         [HttpPost]
-        public async Task<int> RegisterUser(CreateUserDto newUser)
+        public async Task<IActionResult> RegisterUser(UserDto newUser)
         {
             try
             {
-                var addedUser = new User();
-                var addingUserTask = await _createUser.AddNewUser(newUser);
+                var addedUser = await _createUser.AddNewUser(newUser);
+                var code = await _userManager.GenerateEmailConfirmationTokenAsync(addedUser);
 
-                if (addingUserTask.Succeeded)
-                {
+                var callbackUrl = Url.Action(
+                    "ConfirmEmail",
+                    "Account",
+                    new { userId = addedUser.Id, code = code },
+                    protocol: HttpContext.Request.Scheme);
 
-                    addedUser = await _userManager.FindByEmailAsync(newUser.Email);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(addedUser);
+                var emailCOnfirmationTask = await _emailService.SendEmailAsync(addedUser.Email, "Confirm your account",
+                    $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
 
-                    var callbackUrl = Url.Action(
-                        "ConfirmEmail",
-                        "Account",
-                        new {userId = addedUser.Id, code = code},
-                        protocol: HttpContext.Request.Scheme);
+                addedUser.EmailConfirmed = true;
 
-                    await _emailService.SendEmailAsync(addedUser.Email, "Confirm your account",
-                        $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
-                    addedUser.EmailConfirmed = true;
-                }
-
-
-                return addedUser.Id;
-            }
-            catch (ArgumentNullException ex)
-            {
-                throw;
+                return Ok(addedUser.Id);
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while adding new User.");
+                 return StatusCode(500);
             }
         }
     }

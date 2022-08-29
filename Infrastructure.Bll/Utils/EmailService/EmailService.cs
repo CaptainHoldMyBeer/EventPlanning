@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Net;
-using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Infrastructure.Bll.Utils.EmailService
 {
     public class EmailService : IEmailService
     {
-        public async Task SendEmailAsync(string email, string subject, string message)
+        public async Task<bool> SendEmailAsync(string email, string subject, string message)
         {
             try
             {
-
                 #region тестирование отправки сообщения с ссылкой
 
                 //var mailMessage = new MailMessage("eventsnoreplytask@gmail.com", email, "Hello world", message);
@@ -26,12 +23,12 @@ namespace Infrastructure.Bll.Utils.EmailService
 
                 await Task.Delay(100);
 
+
+                return true;
+
                 #endregion
-
-
-
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
