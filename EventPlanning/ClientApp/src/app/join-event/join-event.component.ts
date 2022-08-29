@@ -19,7 +19,7 @@ export class JoinEventComponent implements OnInit {
             if (events) {
                 this.allEvents = events;
             }
-        })
+        });
     }
 }
 

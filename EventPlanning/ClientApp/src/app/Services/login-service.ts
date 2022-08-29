@@ -2,9 +2,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GlobalAppService } from '../Services/global-app-service';
 import { User } from '../Interfaces/user.interface';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-
+import { Observable} from 'rxjs';
 
 @Injectable()
 export class LoginService {

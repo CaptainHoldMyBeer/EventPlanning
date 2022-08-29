@@ -24,4 +24,18 @@ export class EventService {
 
         return this.client.get<Event[]>(this.appService.api + this.controllerPrefix + "getAllEvents", options);
     }
+
+    public GetEventsForUser(userId: number): Observable<Event[]> {
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+        const options = { headers: headers };
+
+        return this.client.get<Event[]>(this.appService.api + this.controllerPrefix + "getEventsForUser?userId=" + userId, options);
+    }
+
+    public JoinEvent(userId: number, eventId: number): Observable<Event[]> {
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
+        const options = { headers: headers };
+
+        return this.client.get<Event[]>(this.appService.api + this.controllerPrefix + "joinEvent?userId=" + userId + "&eventId=" + eventId, options);
+    }
 }

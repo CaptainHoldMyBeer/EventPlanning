@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { AppComponent, UploadInterceptor } from './app.component';
+import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
@@ -27,6 +27,8 @@ import { UploadsModule } from '@progress/kendo-angular-upload';
 
 import { UserRegistrationFormModel, UserLoginFormModel, EventFormModel } from './Models/form.models';
 import { NavigateGuard } from "./Guards/navigate-guard";
+import { RequestInterceptor } from "./Interceptors/requestInterceptor";
+
 
 @NgModule({
   declarations: [
@@ -61,7 +63,7 @@ import { NavigateGuard } from "./Guards/navigate-guard";
     providers: [LoginService, GlobalAppService, EventService, UserRegistrationFormModel, UserLoginFormModel,
         EventFormModel, NavigateGuard, {
         provide: HTTP_INTERCEPTORS,
-        useClass: UploadInterceptor,
+        useClass: RequestInterceptor,
         multi: true,
     }],
   bootstrap: [AppComponent]

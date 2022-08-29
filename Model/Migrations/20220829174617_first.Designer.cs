@@ -10,8 +10,8 @@ using Model;
 namespace Model.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220829060551_secondd")]
-    partial class secondd
+    [Migration("20220829174617_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Dal.Core.EventDalService
 {
@@ -25,7 +26,7 @@ namespace Infrastructure.Dal.Core.EventDalService
                 {
                     var addingEvent = new Event()
                     {
-                        Date = newEvent.Date,
+                        Date = newEvent.Date.ToLocalTime(),
                         Information = GetEventInfos(newEvent.AdditionalInfo),
                         Location = newEvent.Location,
                         Title = newEvent.Title,
@@ -43,6 +44,7 @@ namespace Infrastructure.Dal.Core.EventDalService
                         EventId = addedEventEntity.Entity.Id
                     };
 
+                    await _context.EventUsers.AddAsync(newEventUser);
                     _context.SaveChanges();
 
                     transaction.Commit();
@@ -59,7 +61,8 @@ namespace Infrastructure.Dal.Core.EventDalService
 
         public List<EventDto> GetAllEvents()
         {
-            var eventUsersFromDb = _context.EventUsers.Where(p => p.Event.Date >= DateTime.Today);
+            var tmp = _context.EventUsers.ToList();
+            var eventUsersFromDb = _context.EventUsers.Where(p => p.Event.Date >= DateTime.Today).Include(p=>p.User).Include(p=>p.Event).Include(p=>p.Event.Information).ToList();
 
             var userEvents = new List<EventDto>();
 

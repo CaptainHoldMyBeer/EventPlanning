@@ -30,7 +30,7 @@
             <div class="col-sm">
                 <input type="email" class="form-control" formControlName="Email">
                 <div *ngIf="registerFormControl.Email.errors?.required || registerFormControl.Email.errors?.email" class="alert alert-danger">
-                    Не указано имя
+                    Email is required
                 </div>
             </div>
             <div class="col-sm">
@@ -45,7 +45,7 @@
             <div class="col-sm">
                 <input type="password" class="form-control" formControlName="Password">
                 <div *ngIf="registerFormControl.Password.errors?.required" class="alert alert-danger">
-                    Не указано имя
+                    Password is required
                 </div>
             </div>
             <div class="col-sm"></div>
@@ -58,7 +58,7 @@
             <div class="col-sm">
                 <input type="password" class="form-control" formControlName="ConfirmedPassword">
                 <div *ngIf="registerFormControl.ConfirmedPassword.errors?.required" class="alert alert-danger">
-                    Не указано имя
+                    ConfirmedPassword is required
                 </div>
             </div>
             <div class="col-sm"></div>
@@ -71,7 +71,7 @@
             <div class="col-sm">
                 <input type="text" class="form-control" formControlName="Name">
                 <div *ngIf="registerFormControl.Name.errors?.required" class="alert alert-danger">
-                    Не указано имя
+                    Name is required
                 </div>
             </div>
             <div class="col-sm"></div>
@@ -82,9 +82,9 @@
                 <label>Surname</label>
             </div>
             <div class="col-sm">
-                <input type="password" class="form-control" formControlName="Surname">
+                <input type="text" class="form-control" formControlName="Surname">
                 <div *ngIf="registerFormControl.Surname.errors?.required" class="alert alert-danger">
-                    Не указано имя
+                    Surname is required
                 </div>
             </div>
             <div class="col-sm"></div>
@@ -97,7 +97,7 @@
             <div class="col-sm">
                 <input type="number" class="form-control" formControlName="Age">
                 <div *ngIf="registerFormControl.Age.errors?.required" class="alert alert-danger">
-                    Не указано имя
+                    Age is required
                 </div>
             </div>
             <div class="col-sm"></div>
@@ -110,7 +110,7 @@
             <div class="col-sm">
                 <input type="text" class="form-control" formControlName="Location">
                 <div *ngIf="registerFormControl.Location.errors?.required" class="alert alert-danger">
-                    Не указано имя
+                    Location is required
                 </div>
             </div>
             <div class="col-sm"></div>

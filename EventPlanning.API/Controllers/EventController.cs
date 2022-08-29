@@ -49,5 +49,35 @@ namespace EventPlanning.API.Controllers
             }
         }
 
+        [Route("getEventsForUser")]
+        [HttpGet]
+        public IActionResult GetEventsForUser(int userId)
+        {
+            try
+            {
+                var result = _eventProvider.GetAllEventsByUserId(userId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500);
+            }
+        }
+
+        [Route("joinEvent")]
+        [HttpGet]
+        public IActionResult JoinEvent(int userId, int eventId)
+        {
+            try
+            {
+                var result = _eventProvider.JoinEvent(userId, eventId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500);
+            }
+        }
+
     }
 }
