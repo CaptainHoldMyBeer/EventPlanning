@@ -42,7 +42,7 @@ namespace EventPlanning.API.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(500);
+                return StatusCode(500, "error while login");
             }
         }
 

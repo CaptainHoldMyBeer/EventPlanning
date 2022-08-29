@@ -10,8 +10,13 @@ export class RequestInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(
             catchError((error: HttpErrorResponse) => {
-                if (error && error.status === 401) {
-                    let tmp = 2;
+                if (error) {
+                    if (error.status === 400) {
+                        alert(error.error);
+                    }
+                    if (error.status === 500) {
+                        alert("an unhandled error occurred");
+                    }
                 } else {
                     return throwError(error);
                 }
