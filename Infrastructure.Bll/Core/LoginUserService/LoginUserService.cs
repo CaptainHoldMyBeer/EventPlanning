@@ -26,8 +26,10 @@ namespace Infrastructure.Bll.Core.LoginUserService
             {
                 return _userManager.Users.First(p => p.UserName == user.Login).Id;
             }
-
-            return 0;
+            else
+            {
+                throw new ArgumentException();
+            }
         }
     } 
 }

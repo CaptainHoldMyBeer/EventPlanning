@@ -36,6 +36,10 @@ namespace EventPlanning.API.Controllers
                 return Ok(result);
 
             }
+            catch (ArgumentException)
+            {
+                return BadRequest("Invalid username/password combination");
+            }
             catch (Exception)
             {
                 return StatusCode(500);
@@ -57,7 +61,7 @@ namespace EventPlanning.API.Controllers
                     new { userId = addedUser.Id, code = code },
                     protocol: HttpContext.Request.Scheme);
 
-                var emailCOnfirmationTask = await _emailService.SendEmailAsync(addedUser.Email, "Confirm your account",
+                await _emailService.SendEmailAsync(addedUser.Email, "Confirm your account",
                     $"Подтвердите регистрацию, перейдя по ссылке: <a href='{callbackUrl}'>link</a>");
 
                 addedUser.EmailConfirmed = true;

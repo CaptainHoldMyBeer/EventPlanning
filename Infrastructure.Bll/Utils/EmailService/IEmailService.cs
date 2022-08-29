@@ -7,6 +7,6 @@ namespace Infrastructure.Bll.Utils.EmailService
 {
     public interface IEmailService
     {
-        Task<bool> SendEmailAsync(string email, string subject, string message);
+        Task SendEmailAsync(string email, string subject, string message);
     }
 }

@@ -5,7 +5,7 @@ namespace Infrastructure.Bll.Utils.EmailService
 {
     public class EmailService : IEmailService
     {
-        public async Task<bool> SendEmailAsync(string email, string subject, string message)
+        public async Task SendEmailAsync(string email, string subject, string message)
         {
             try
             {
@@ -22,9 +22,6 @@ namespace Infrastructure.Bll.Utils.EmailService
                 //client.Send("eventsnoreplytask@gmail.com", email, "Подтверждение", message);
 
                 await Task.Delay(100);
-
-
-                return true;
 
                 #endregion
             }
