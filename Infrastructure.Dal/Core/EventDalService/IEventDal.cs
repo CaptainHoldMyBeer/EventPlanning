@@ -10,7 +10,7 @@ namespace Infrastructure.Dal.Core.EventDalService
     public interface IEventDal
     {
         Task<bool> AddNewEvent(EventDto newEvent);
-        List<EventDto> GetAllEvents();
+        List<EventDto> GetAllEvents(int userId);
         List<EventDto> GetAllEventsByUserId(int id);
         bool JoinEvent(int userId, int eventId);
     }

@@ -49,7 +49,9 @@ export class CreateEventComponent {
 
         this.eventService.createNewEvent(this.newEvent).subscribe((response) => {
             if (response) {
-                alert(response);
+                alert("the event was created");
+                this.formModel.model.reset();
+                this.additionalInfo = [];
             }
         });
     }

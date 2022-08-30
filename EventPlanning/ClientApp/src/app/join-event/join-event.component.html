@@ -13,7 +13,6 @@
                         [data]="allEvents"
                         [selectable]="{checkboxOnly: true, mode: 'single'}"
                         [kendoGridSelectBy]="'Id'"
-                        [selectedKeys]="mySelection"
                         (selectionChange)="selectionChange($event)">
                 <kendo-grid-checkbox-column width="30"></kendo-grid-checkbox-column>
                 <kendo-grid-column field="title" title="Title"> </kendo-grid-column>

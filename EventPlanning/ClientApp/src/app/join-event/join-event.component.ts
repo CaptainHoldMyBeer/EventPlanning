@@ -12,12 +12,12 @@ export class JoinEventComponent implements OnInit {
 
     public allEvents: Event[] = [];
     public additionalInfo: EventInfo[] = [];
-    public selectedKeys: number;
+    public selectedKey: number;
 
     constructor(public eventService: EventService, public globalService: GlobalAppService) { }
 
     ngOnInit(): void {
-        this.eventService.GetEvents().subscribe((events) => {
+        this.eventService.GetEvents(this.globalService.userId).subscribe((events) => {
             if (events) {
                 this.allEvents = events;
             }
@@ -28,16 +28,22 @@ export class JoinEventComponent implements OnInit {
         let selectedRow = e.selectedRows[0].dataItem;
 
         this.additionalInfo = selectedRow.additionalInfo;
+
+        this.selectedKey = selectedRow.id;
     }
 
     public joinEvent() {
-        if (!this.selectedKeys) {
+        if (!this.selectedKey) {
             alert("need to chose event!")
             return;
         }
-        this.eventService.JoinEvent(this.globalService.userId, this.selectedKeys).subscribe((response) => {
-            if (response)
-                alert(response);
+        this.eventService.JoinEvent(this.globalService.userId, this.selectedKey).subscribe((response) => {
+            if (response) {
+                alert("you have joined the event");
+            }
+            else {
+                alert("you can't join this event");
+            }
         });
     }
 }

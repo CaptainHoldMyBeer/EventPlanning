@@ -28,24 +28,28 @@ namespace EventPlanning.API.Controllers
 
                 return Ok(result);
             }
-            catch (Exception ex)
+            catch (ArgumentNullException)
             {
-                return StatusCode(500);
+                return BadRequest("bad event data");
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "error on creating event");
             }
         }
 
         [Route("getAllEvents")]
         [HttpGet]
-        public IActionResult GetAllEvents()
+        public IActionResult GetAllEvents(int userId)
         {
             try
             {
-                var result = _eventProvider.GetAllEvents();
+                var result = _eventProvider.GetAllEvents(userId);
                 return Ok(result);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return StatusCode(500);
+                return StatusCode(500, "error on getting all events");
             }
         }
 
@@ -58,9 +62,9 @@ namespace EventPlanning.API.Controllers
                 var result = _eventProvider.GetAllEventsByUserId(userId);
                 return Ok(result);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return StatusCode(500);
+                return StatusCode(500, "error on getting events");
             }
         }
 
@@ -73,9 +77,9 @@ namespace EventPlanning.API.Controllers
                 var result = _eventProvider.JoinEvent(userId, eventId);
                 return Ok(result);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return StatusCode(500);
+                return StatusCode(500, "error on joining event");
             }
         }
 

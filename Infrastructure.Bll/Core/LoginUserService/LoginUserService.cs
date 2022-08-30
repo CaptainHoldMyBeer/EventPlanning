@@ -20,15 +20,22 @@ namespace Infrastructure.Bll.Core.LoginUserService
         }
         public async Task<int> LoginUser(UserDto user)
         {
-            var loginResult =  await _signInManager.PasswordSignInAsync(user.Login, user.Password, false, false);
+            try
+            {
+                var loginResult = await _signInManager.PasswordSignInAsync(user.Login, user.Password, false, false);
 
-            if (loginResult.Succeeded)
-            {
-                return _userManager.Users.First(p => p.UserName == user.Login).Id;
+                if (loginResult.Succeeded)
+                {
+                    return _userManager.Users.First(p => p.UserName == user.Login).Id;
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
             }
-            else
+            catch (Exception)
             {
-                throw new ArgumentException();
+                throw;
             }
         }
     } 

@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Dal.Core.EventDalService;
 using Model.DtoModels;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,22 +15,50 @@ namespace Infrastructure.Bll.Core.EventProviderService
         }
         public async Task<bool> CreateEvent(EventDto newEvent)
         {
-           return await _eventDal.AddNewEvent(newEvent);
+            try
+            {
+                return await _eventDal.AddNewEvent(newEvent);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public List<EventDto> GetAllEvents()
+        public List<EventDto> GetAllEvents(int userId)
         {
-            return _eventDal.GetAllEvents();
+            try
+            {
+                return _eventDal.GetAllEvents(userId);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public List<EventDto> GetAllEventsByUserId(int userId)
         {
-            return _eventDal.GetAllEventsByUserId(userId);
+            try
+            {
+                return _eventDal.GetAllEventsByUserId(userId);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
         }
 
         public bool JoinEvent(int userId, int eventId)
         {
-            return _eventDal.JoinEvent(userId, eventId);
+            try
+            {
+                return _eventDal.JoinEvent(userId, eventId);
+            }
+            catch(Exception)
+            {
+                throw;
+            }
         }
 
     }

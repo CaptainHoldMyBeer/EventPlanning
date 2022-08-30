@@ -18,11 +18,11 @@ export class EventService {
         return this.client.post<boolean>(this.appService.api + this.controllerPrefix + "createEvent", newEvent, options);
     }
 
-    public GetEvents(): Observable<Event[]> {
+    public GetEvents(userId: number): Observable<Event[]> {
         const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
         const options = { headers: headers };
 
-        return this.client.get<Event[]>(this.appService.api + this.controllerPrefix + "getAllEvents", options);
+        return this.client.get<Event[]>(this.appService.api + this.controllerPrefix + "getAllEvents?userId=" + userId, options);
     }
 
     public GetEventsForUser(userId: number): Observable<Event[]> {

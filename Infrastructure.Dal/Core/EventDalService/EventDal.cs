@@ -22,6 +22,9 @@ namespace Infrastructure.Dal.Core.EventDalService
             {
                 try
                 {
+                    if (newEvent == null)
+                        throw new ArgumentNullException(nameof(newEvent));
+
                     var addingEvent = new Event()
                     {
                         Date = newEvent.Date.ToLocalTime(),
@@ -57,51 +60,66 @@ namespace Infrastructure.Dal.Core.EventDalService
             }
         }
 
-        public List<EventDto> GetAllEvents()
+        public List<EventDto> GetAllEvents(int userId)
         {
-            var tmp = _context.EventUsers.ToList();
-            var eventUsersFromDb = _context.EventUsers.Where(p => p.Event.Date >= DateTime.Today).Include(p=>p.User).Include(p=>p.Event).Include(p=>p.Event.Information).ToList();
-
-            var userEvents = new List<EventDto>();
-
-            foreach (var foundEvent in eventUsersFromDb)
+            try
             {
-                userEvents.Add(new EventDto
-                {
-                    Id = foundEvent.EventId,
-                    Date = foundEvent.Event.Date,
-                    Location = foundEvent.Event.Location,
-                    Title = foundEvent.Event.Title,
-                    AdditionalInfo = GetEventInfoDtos(foundEvent.Event.Information),
-                    MaxMembers = foundEvent.Event.MaxMembers,
-                    CurrentMembers = foundEvent.Event.EventUsers.Count
-                });
-            }
+                var eventUsersFromDb = _context.EventUsers.Where(p => p.Event.Date >= DateTime.Today && p.UserId != userId)
+                    .Include(p => p.User).Include(p => p.Event).Include(p => p.Event.Information).ToList();
 
-            return userEvents;
+                var userEvents = new List<EventDto>();
+
+                foreach (var foundEvent in eventUsersFromDb)
+                {
+                    userEvents.Add(new EventDto
+                    {
+                        Id = foundEvent.EventId,
+                        Date = foundEvent.Event.Date,
+                        Location = foundEvent.Event.Location,
+                        Title = foundEvent.Event.Title,
+                        AdditionalInfo = GetEventInfoDtos(foundEvent.Event.Information),
+                        MaxMembers = foundEvent.Event.MaxMembers,
+                        CurrentMembers = foundEvent.Event.EventUsers.Count
+                    });
+                }
+
+                return userEvents;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public List<EventDto> GetAllEventsByUserId(int id)
         {
-            var eventUsersFromDb = _context.EventUsers.Where(p => p.UserId == id && p.Event.Date >= DateTime.Today);
-
-            var userEvents = new List<EventDto>();
-
-            foreach (var foundEvent in eventUsersFromDb)
+            try
             {
-                userEvents.Add(new EventDto
-                {
-                    Id = foundEvent.EventId,
-                    Date = foundEvent.Event.Date,
-                    Location = foundEvent.Event.Location,
-                    Title = foundEvent.Event.Title,
-                    AdditionalInfo = GetEventInfoDtos(foundEvent.Event.Information),
-                    MaxMembers = foundEvent.Event.MaxMembers,
-                    CurrentMembers = foundEvent.Event.EventUsers.Count
-                });
-            }
+                var eventUsersFromDb = _context.EventUsers.Where(p => p.UserId == id && p.Event.Date >= DateTime.Today)
+                    .Include(p => p.User).Include(p => p.Event).Include(p => p.Event.Information).ToList();
 
-            return userEvents;
+                var userEvents = new List<EventDto>();
+
+                foreach (var foundEvent in eventUsersFromDb)
+                {
+                    userEvents.Add(new EventDto
+                    {
+                        Id = foundEvent.EventId,
+                        Date = foundEvent.Event.Date,
+                        Location = foundEvent.Event.Location,
+                        Title = foundEvent.Event.Title,
+                        AdditionalInfo = GetEventInfoDtos(foundEvent.Event.Information),
+                        MaxMembers = foundEvent.Event.MaxMembers,
+                        CurrentMembers = foundEvent.Event.EventUsers.Count
+                    });
+                }
+
+                return userEvents;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public bool JoinEvent(int userId, int eventId)
@@ -110,6 +128,11 @@ namespace Infrastructure.Dal.Core.EventDalService
             {
                 try
                 {
+                    var selectedEvent = _context.Events.Where(p => p.Id == eventId).Include(p => p.EventUsers).First();
+
+                    if (selectedEvent.MaxMembers < selectedEvent.EventUsers.Count + 1)
+                        return false;
+
                     var newEventUser = new Event_User
                     {
                         UserId = userId,

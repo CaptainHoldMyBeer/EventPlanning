@@ -8,7 +8,7 @@ namespace Infrastructure.Bll.Core.EventProviderService
     {
         Task<bool> CreateEvent(EventDto newEvent);
 
-        List<EventDto> GetAllEvents();
+        List<EventDto> GetAllEvents(int userId);
 
         List<EventDto> GetAllEventsByUserId(int userId);
 
