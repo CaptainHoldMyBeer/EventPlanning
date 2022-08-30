@@ -68,9 +68,13 @@ namespace EventPlanning.API.Controllers
 
                 return Ok(addedUser.Id);
             }
-            catch (Exception ex)
+            catch (ArgumentNullException)
             {
-                 return StatusCode(500);
+                return BadRequest("bad registration data");
+            }
+            catch (Exception)
+            {
+                 return StatusCode(500, "error while register new user");
             }
         }
     }

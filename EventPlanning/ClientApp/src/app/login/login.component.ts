@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
                 this.globalService.isUserAuthenticated = true;
                 this.globalService.userId = response;
                 alert("Welcome");
-                this.router.navigate(['/user-events']);
+                this.router.navigate(['/']);
             } else {
                 alert("Error. Try one more time");
             }

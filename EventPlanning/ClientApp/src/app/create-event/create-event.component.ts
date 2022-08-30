@@ -41,7 +41,11 @@ export class CreateEventComponent {
     }
 
     public onCreate() {
-        this.createNewEvent();
+        this.createNewEventObject();
+
+        if (!this.checkEventBeforeSaving()) {
+            return;
+        }
 
         this.eventService.createNewEvent(this.newEvent).subscribe((response) => {
             if (response) {
@@ -50,7 +54,7 @@ export class CreateEventComponent {
         });
     }
 
-    private createNewEvent() {
+    private createNewEventObject() {
         this.newEvent = {
             Title: this.formModel.model.value.Title,
             Location: this.formModel.model.value.Location,
@@ -63,14 +67,17 @@ export class CreateEventComponent {
 
     }
 
-    private getDateAndTimeOfEvent() {
+    private checkEventBeforeSaving(): boolean {
+        if (this.newEvent.Date.getTime() <= new Date().getTime()) {
+            alert("Please, enter valid date");
+            return false;
+        }
+        return true;
 
     }
 
     private getDateTime(date: string, time: string ): Date {
-        var newDate = new Date(date);
-        newDate.setHours(+time.split(':')[0]);
-        newDate.setHours(+time.split(':')[1]);
+        var newDate = new Date(date + " " + time);
 
         return newDate;
     }

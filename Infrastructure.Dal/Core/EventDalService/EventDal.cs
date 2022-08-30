@@ -20,8 +20,6 @@ namespace Infrastructure.Dal.Core.EventDalService
         {
             using (var transaction = _context.Database.BeginTransaction())
             {
-
-                var t = _context.Users.ToList();
                 try
                 {
                     var addingEvent = new Event()
@@ -70,6 +68,7 @@ namespace Infrastructure.Dal.Core.EventDalService
             {
                 userEvents.Add(new EventDto
                 {
+                    Id = foundEvent.EventId,
                     Date = foundEvent.Event.Date,
                     Location = foundEvent.Event.Location,
                     Title = foundEvent.Event.Title,
@@ -91,7 +90,8 @@ namespace Infrastructure.Dal.Core.EventDalService
             foreach (var foundEvent in eventUsersFromDb)
             {
                 userEvents.Add(new EventDto
-                { 
+                {
+                    Id = foundEvent.EventId,
                     Date = foundEvent.Event.Date,
                     Location = foundEvent.Event.Location,
                     Title = foundEvent.Event.Title,

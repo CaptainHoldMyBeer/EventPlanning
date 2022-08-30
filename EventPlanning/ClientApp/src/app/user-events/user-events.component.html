@@ -9,19 +9,33 @@
 
     <div class="row align-bottom mt-4">
         <div class="col-8">
-            <kendo-grid [height]="500">
-                <kendo-grid-column field="name" title="Title"> </kendo-grid-column>
-                <kendo-grid-column field="name" title="Place"> </kendo-grid-column>
-                <kendo-grid-column field="name" title="Date"> </kendo-grid-column>
-                <kendo-grid-column field="name" title="Time"> </kendo-grid-column>
-                <kendo-grid-column field="name" title="Remaining places"> </kendo-grid-column>
+            <kendo-grid [height]="500"
+                        [data]="allEvents"
+                        [selectable]="{checkboxOnly: true, mode: 'single'}"
+                        [kendoGridSelectBy]="'Id'"
+                        [selectedKeys]="mySelection"
+                        (selectionChange)="selectionChange($event)">
+                <kendo-grid-checkbox-column width="30"></kendo-grid-checkbox-column>
+                <kendo-grid-column field="title" title="Title"> </kendo-grid-column>
+                <kendo-grid-column field="date" title="Date">
+                    <ng-template kendoGridCellTemplate let-dataItem style="align-items: center;">
+                        <div>{{dataItem.date | date :'short'}}</div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="location" title="Location"> </kendo-grid-column>
+                <kendo-grid-column title="Remaining places">
+                    <ng-template kendoGridCellTemplate let-dataItem style="align-items: center;">
+                        <div>{{dataItem.currentMembers}} / {{dataItem.maxMembers}}</div>
+                    </ng-template>
+                </kendo-grid-column>
             </kendo-grid>
         </div>
 
         <div class="col-4">
-            <kendo-grid [height]="500">
-                <kendo-grid-column field="name" title="Key"> </kendo-grid-column>
-                <kendo-grid-column field="name" title="Value"> </kendo-grid-column>
+            <kendo-grid [height]="500"
+                        [data]="additionalInfo">
+                <kendo-grid-column field="key" title="Key"> </kendo-grid-column>
+                <kendo-grid-column field="value" title="Value"> </kendo-grid-column>
             </kendo-grid>
         </div>
     </div>

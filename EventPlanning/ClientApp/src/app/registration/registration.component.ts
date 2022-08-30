@@ -41,7 +41,7 @@ export class RegistrationComponent implements OnInit {
                 this.globalService.isUserAuthenticated = true;
                 this.globalService.userId = addedId;
                 alert("Welcome");
-                this.router.navigate(['/user-events']);
+                this.router.navigate(['/']);
             }
         });
     }
@@ -49,7 +49,7 @@ export class RegistrationComponent implements OnInit {
 
     private credentialsValid(): boolean {
         if (this.formModel.model.value.Password !== this.formModel.model.value.ConfirmedPassword) {
-            alert("Введенные пароли должны совпадать!");
+            alert("Passwords must match");
             return false;
         }
 

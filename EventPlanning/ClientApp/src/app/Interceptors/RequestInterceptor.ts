@@ -11,12 +11,7 @@ export class RequestInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(
             catchError((error: HttpErrorResponse) => {
                 if (error) {
-                    if (error.status === 400) {
-                        alert(error.error);
-                    }
-                    if (error.status === 500) {
-                        alert("an unhandled error occurred");
-                    }
+                    alert(error.error);
                 } else {
                     return throwError(error);
                 }
